@@ -1,0 +1,175 @@
+backend:
+  name: git-gateway
+  branch: main
+
+local_backend: true
+
+media_folder: assets/images/uploads
+public_folder: /assets/images/uploads
+
+site_url: /
+display_url: /
+logo_url: /assets/images/two_woods_estate.svg
+
+collections:
+  - name: settings
+    label: Site Settings
+    files:
+      - label: Global Settings
+        name: global_settings
+        file: _config.yml
+        fields:
+          - { label: Site Title, name: title, widget: string }
+          - { label: Contact Email, name: email, widget: string }
+          - { label: Meta Description, name: description, widget: text }
+          - { label: Venue Address, name: venue_address, widget: string }
+          - { label: Instagram URL, name: instagram_url, widget: string }
+          - { label: Facebook URL, name: facebook_url, widget: string }
+          - { label: Ticker Message, name: ticker_message, widget: string }
+
+  - name: pages
+    label: Page Content
+    files:
+      - label: Home Page
+        name: home_page
+        file: _data/home.yml
+        fields:
+          - label: Hero Video
+            name: hero_video
+            widget: object
+            fields:
+              - { label: Video Poster, name: poster, widget: image, required: false }
+              - { label: Video Source URL, name: source, widget: string }
+          - label: Intro Section
+            name: intro
+            widget: object
+            fields:
+              - { label: Heading, name: heading, widget: string }
+              - { label: Intro Text, name: body, widget: text }
+          - label: Explore Section
+            name: explore
+            widget: object
+            fields:
+              - { label: Heading, name: heading, widget: string }
+              - label: Cards
+                name: cards
+                widget: list
+                summary: "{{fields.title}}"
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - { label: Description, name: description, widget: text }
+                  - { label: Image, name: image, widget: image }
+                  - { label: Alt Text, name: alt, widget: string }
+
+      - label: Weddings Page
+        name: weddings_page
+        file: _data/weddings.yml
+        fields:
+          - label: Hero
+            name: hero
+            widget: object
+            fields:
+              - { label: Hero Image, name: image, widget: image }
+              - { label: Hero Alt Text, name: alt, widget: string }
+          - label: Intro
+            name: intro
+            widget: object
+            fields:
+              - { label: Heading, name: heading, widget: string }
+              - label: Paragraphs
+                name: paragraphs
+                widget: list
+                field: { label: Paragraph, name: paragraph, widget: text }
+          - label: Spaces
+            name: spaces
+            widget: object
+            fields:
+              - { label: Heading, name: heading, widget: string }
+              - label: Cards
+                name: cards
+                widget: list
+                summary: "{{fields.title}}"
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - { label: Description, name: description, widget: text }
+                  - { label: Image, name: image, widget: image }
+                  - { label: Alt Text, name: alt, widget: string }
+
+      - label: Events Page
+        name: events_page
+        file: _data/events.yml
+        fields:
+          - label: Hero
+            name: hero
+            widget: object
+            fields:
+              - { label: Hero Image, name: image, widget: image }
+              - { label: Hero Alt Text, name: alt, widget: string }
+          - label: Intro
+            name: intro
+            widget: object
+            fields:
+              - { label: Heading, name: heading, widget: string }
+              - label: Paragraphs
+                name: paragraphs
+                widget: list
+                field: { label: Paragraph, name: paragraph, widget: text }
+          - label: Spaces
+            name: spaces
+            widget: object
+            fields:
+              - { label: Heading, name: heading, widget: string }
+              - label: Cards
+                name: cards
+                widget: list
+                summary: "{{fields.title}}"
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - { label: Description, name: description, widget: text }
+                  - { label: Image, name: image, widget: image }
+                  - { label: Alt Text, name: alt, widget: string }
+
+      - label: Gallery Page
+        name: gallery_page
+        file: _data/gallery.yml
+        fields:
+          - label: Content
+            name: content
+            widget: object
+            fields:
+              - { label: Heading, name: heading, widget: string }
+              - label: Images
+                name: images
+                widget: list
+                summary: "{{fields.alt}}"
+                fields:
+                  - { label: Image, name: image, widget: image }
+                  - { label: Alt Text, name: alt, widget: string }
+
+      - label: About Page
+        name: about_page
+        file: _data/about.yml
+        fields:
+          - label: Hero
+            name: hero
+            widget: object
+            fields:
+              - { label: Hero Image, name: image, widget: image }
+              - { label: Hero Alt Text, name: alt, widget: string }
+          - label: Content
+            name: content
+            widget: object
+            fields:
+              - { label: Heading, name: heading, widget: string }
+              - { label: Body Text, name: body, widget: text }
+
+      - label: Contact Page
+        name: contact_page
+        file: _data/contact.yml
+        fields:
+          - label: Content
+            name: content
+            widget: object
+            fields:
+              - { label: Heading, name: heading, widget: string }
+              - { label: Intro Text, name: intro, widget: text }

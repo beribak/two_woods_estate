@@ -1,0 +1,32 @@
+hero:
+  image: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1800&q=80"
+  alt: "Wedding couple at the venue"
+intro:
+  heading: "Weddings at Two Woods Estate"
+  paragraphs:
+    - "From intimate ceremonies to full-weekend celebrations, the estate offers a sequence of spaces that flow naturally from vows to dinner and dancing."
+    - "This page is intentionally placeholder-led so we can quickly iterate on your final copy, package details, and featured photography."
+    - "Every setting below can be styled in your signature palette and tailored to your guest count and event rhythm."
+spaces:
+  heading: "Wedding Spaces"
+  cards:
+    - title: "Redwoods"
+      description: "A dramatic natural backdrop for heartfelt vows beneath mature trees."
+      image: "https://images.unsplash.com/photo-1529634890091-3f9d0f01d6a5?auto=format&fit=crop&w=1200&q=80"
+      alt: "Redwoods ceremony space"
+    - title: "Loft"
+      description: "An airy indoor setting with architectural lines and warm evening light."
+      image: "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1200&q=80"
+      alt: "Loft reception room"
+    - title: "Meadow"
+      description: "Open countryside views ideal for drinks receptions and seasonal florals."
+      image: "https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=1200&q=80"
+      alt: "Meadow for open-air celebration"
+    - title: "Terrace"
+      description: "A sunset-facing space for relaxed dining and evening conversation."
+      image: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1200&q=80"
+      alt: "Terrace dining area"
+    - title: "Barn"
+      description: "Rustic character paired with modern comforts for lively receptions."
+      image: "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?auto=format&fit=crop&w=1200&q=80"
+      alt: "Barn reception hall"

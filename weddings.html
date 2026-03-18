@@ -4,60 +4,30 @@ title: Weddings
 permalink: /weddings/
 ---
 
+{% assign weddings = site.data.weddings %}
+
 <section class="hero-image animate-on-scroll">
-  <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1800&q=80" alt="Wedding couple at the venue" />
+  <img src="{{ weddings.hero.image }}" alt="{{ weddings.hero.alt }}" />
 </section>
 
 <section class="section panel animate-on-scroll">
-  <h1>Weddings at Two Woods Estate</h1>
-  <p>
-    From intimate ceremonies to full-weekend celebrations, the estate offers a sequence of spaces that flow naturally from vows to dinner and dancing.
-  </p>
-  <p>
-    This page is intentionally placeholder-led so we can quickly iterate on your final copy, package details, and featured photography.
-  </p>
-  <p>
-    Every setting below can be styled in your signature palette and tailored to your guest count and event rhythm.
-  </p>
+  <h1>{{ weddings.intro.heading }}</h1>
+  {% for paragraph in weddings.intro.paragraphs %}
+    <p>{{ paragraph }}</p>
+  {% endfor %}
 </section>
 
 <section class="section panel animate-on-scroll">
-  <h2>Wedding Spaces</h2>
+  <h2>{{ weddings.spaces.heading }}</h2>
   <div class="card-carousel">
-    <article class="card">
-      <img src="https://images.unsplash.com/photo-1529634890091-3f9d0f01d6a5?auto=format&fit=crop&w=1200&q=80" alt="Redwoods ceremony space" />
-      <div class="card-body">
-        <h3>Redwoods</h3>
-        <p>A dramatic natural backdrop for heartfelt vows beneath mature trees.</p>
-      </div>
-    </article>
-    <article class="card">
-      <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1200&q=80" alt="Loft reception room" />
-      <div class="card-body">
-        <h3>Loft</h3>
-        <p>An airy indoor setting with architectural lines and warm evening light.</p>
-      </div>
-    </article>
-    <article class="card">
-      <img src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=1200&q=80" alt="Meadow for open-air celebration" />
-      <div class="card-body">
-        <h3>Meadow</h3>
-        <p>Open countryside views ideal for drinks receptions and seasonal florals.</p>
-      </div>
-    </article>
-    <article class="card">
-      <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1200&q=80" alt="Terrace dining area" />
-      <div class="card-body">
-        <h3>Terrace</h3>
-        <p>A sunset-facing space for relaxed dining and evening conversation.</p>
-      </div>
-    </article>
-    <article class="card">
-      <img src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?auto=format&fit=crop&w=1200&q=80" alt="Barn reception hall" />
-      <div class="card-body">
-        <h3>Barn</h3>
-        <p>Rustic character paired with modern comforts for lively receptions.</p>
-      </div>
-    </article>
+    {% for card in weddings.spaces.cards %}
+      <article class="card">
+        <img src="{{ card.image }}" alt="{{ card.alt }}" />
+        <div class="card-body">
+          <h3>{{ card.title }}</h3>
+          <p>{{ card.description }}</p>
+        </div>
+      </article>
+    {% endfor %}
   </div>
 </section>

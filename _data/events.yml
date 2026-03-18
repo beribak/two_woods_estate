@@ -1,0 +1,32 @@
+hero:
+  image: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1800&q=80"
+  alt: "Styled event setup at the estate"
+intro:
+  heading: "Events at Two Woods Estate"
+  paragraphs:
+    - "Beyond weddings, Two Woods Estate is built for milestone birthdays, brand retreats, private dinners, and seasonal celebrations."
+    - "Our team can shape each event around your timeline, guest journey, and preferred atmosphere, from relaxed daytime gatherings to polished evening experiences."
+    - "The spaces below follow the same visual format as the Weddings page and can be adapted with final event-specific content."
+spaces:
+  heading: "Event Spaces"
+  cards:
+    - title: "Redwoods"
+      description: "A striking outdoor setting for welcome drinks and intimate ceremonies."
+      image: "https://images.unsplash.com/photo-1505236858219-8359eb29e329?auto=format&fit=crop&w=1200&q=80"
+      alt: "Redwoods event space"
+    - title: "Loft"
+      description: "Flexible indoor layout suitable for talks, dining, and networking."
+      image: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=1200&q=80"
+      alt: "Loft for presentations and dinners"
+    - title: "Meadow"
+      description: "Open-air freedom for informal programs, team moments, and music."
+      image: "https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1200&q=80"
+      alt: "Meadow set up for social events"
+    - title: "Terrace"
+      description: "Scenic dining area perfect for curated menus and sunset cocktails."
+      image: "https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=1200&q=80"
+      alt: "Terrace with candle-lit tables"
+    - title: "Barn"
+      description: "A larger space for evening programs, live entertainment, and dance."
+      image: "https://images.unsplash.com/photo-1472653431158-6364773b2a56?auto=format&fit=crop&w=1200&q=80"
+      alt: "Barn event hall with lighting"

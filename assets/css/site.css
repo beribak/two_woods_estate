@@ -61,14 +61,18 @@ a {
 }
 
 .wrap {
-  width: min(1120px, calc(100% - 2.5rem));
+  width: min(1120px, calc(100% - 2rem));
   margin: 0 auto;
 }
 
+.header-wrap .wrap {
+  width: 100%;
+}
+
 .ticker {
-  border-bottom: 1px solid #3b2a20;
-  background: #3b2a20;
-  color: #f8ecdd;
+  border-bottom: 1px solid black;
+  background: black;
+  color: white;
   font-size: 0.9rem;
   letter-spacing: 0.07em;
   overflow: hidden;
@@ -108,10 +112,12 @@ a {
 
 .header-wrap {
   display: flex;
-  gap: 1rem;
+  gap: 0.5rem;
   align-items: center;
   justify-content: space-between;
   min-height: 72px;
+  padding: 0 0.8rem;
+  width: 100%;
 }
 
 .brand-group {
@@ -124,7 +130,16 @@ a {
   height: 48px;
   width: auto;
   object-fit: contain;
-  transition: opacity 0.3s ease;
+  filter: brightness(0.12);
+  transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+.home-page .logo {
+  filter: brightness(1);
+}
+
+.home-page.nav-stuck .logo {
+  filter: brightness(0.15);
 }
 
 .brand {
@@ -136,7 +151,7 @@ a {
 
 .main-nav {
   display: flex;
-  gap: 1rem;
+  gap: 0.6rem;
   flex-wrap: wrap;
   justify-content: flex-end;
 }
@@ -155,7 +170,7 @@ a {
 
 .page-content {
   width: 100%;
-  padding: 0 0 3rem;
+  padding: 0 0 4.5rem;
 }
 
 .hero-video,
@@ -164,7 +179,7 @@ a {
   border-radius: 0;
   overflow: hidden;
   box-shadow: none;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
 }
 
 .hero-video::after,
@@ -240,8 +255,9 @@ a {
 
 .section {
   width: 100%;
-  margin-bottom: 3rem;
-  padding: 0 clamp(1.2rem, 3.5vw, 3rem);
+  max-width: 1120px;
+  margin: 3rem auto 4.25rem;
+  padding: 0 clamp(1.5rem, 4vw, 3.5rem);
 }
 
 .panel {

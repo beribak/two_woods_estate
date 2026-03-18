@@ -4,10 +4,12 @@ title: Contact
 permalink: /contact/
 ---
 
+{% assign contact = site.data.contact %}
+
 <section class="section panel animate-on-scroll">
-  <h1>Enquiry Form</h1>
+  <h1>{{ contact.content.heading }}</h1>
   <p>
-    This is a placeholder version of the enquiry form so we can match your current website form fields and submission flow in the next iteration.
+    {{ contact.content.intro }}
   </p>
 
   <form class="form-grid" action="#" method="post">
