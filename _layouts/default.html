@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+    <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | strip_newlines | truncate: 160 }}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}" />
+    <script defer src="{{ '/assets/js/site.js' | relative_url }}"></script>
+  </head>
+  <body class="{% if page.url == '/' %}home-page{% endif %}">
+    <div class="ticker" role="status" aria-live="polite">
+      <div class="ticker-track">
+        <span>{{ site.ticker_message }}</span>
+        <span>{{ site.ticker_message }}</span>
+        <span>{{ site.ticker_message }}</span>
+      </div>
+    </div>
+
+    <header class="site-header">
+      <div class="wrap header-wrap">
+        <div class="brand-group">
+          <img class="logo" src="{{ '/assets/images/two_woods_estate.svg' | relative_url }}" alt="Two Woods Estate" />
+          <a class="brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+        </div>
+        <nav aria-label="Primary" class="main-nav">
+          <a href="{{ '/weddings/' | relative_url }}">Weddings</a>
+          <a href="{{ '/events/' | relative_url }}">Events</a>
+          <a href="{{ '/gallery/' | relative_url }}">Gallery</a>
+          <a href="{{ '/about/' | relative_url }}">About Us</a>
+          <a href="{{ '/contact/' | relative_url }}">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="page-content">
+      {{ content }}
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap footer-wrap">
+        <div>
+          <h2>Contact Details</h2>
+          <p>{{ site.venue_address }}</p>
+          <p><a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+        </div>
+        <div>
+          <h2>Social</h2>
+          <p><a href="{{ site.instagram_url }}" target="_blank" rel="noopener noreferrer">Instagram</a></p>
+          <p><a href="{{ site.facebook_url }}" target="_blank" rel="noopener noreferrer">Facebook</a></p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
