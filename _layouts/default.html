@@ -26,7 +26,12 @@
           <img class="logo" src="{{ '/assets/images/two_woods_estate.svg' | relative_url }}" alt="Two Woods Estate" />
           <a class="brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
         </div>
-        <nav aria-label="Primary" class="main-nav">
+        <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <nav id="primary-nav" aria-label="Primary" class="main-nav">
           <a href="{{ '/weddings/' | relative_url }}">Weddings</a>
           <a href="{{ '/events/' | relative_url }}">Events</a>
           <a href="{{ '/gallery/' | relative_url }}">Gallery</a>
