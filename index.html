@@ -7,7 +7,7 @@ permalink: /
 {% assign home = site.data.home %}
 
 <section class="hero-video landing-hero animate-on-scroll">
-	<video id="video-player-tag" class="video-player-tag" autoplay muted playsinline loop preload="none" poster="{{ home.hero_video.poster }}" src="{{ home.hero_video.source }}" controlslist="nodownload"></video>
+	<video id="video-player-tag" class="video-player-tag" autoplay muted playsinline loop preload="metadata" src="{{ home.hero_video.source }}" controlslist="nodownload"></video>
 </section>
 
 <section class="section panel animate-on-scroll">
