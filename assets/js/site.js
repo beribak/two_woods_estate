@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const isOpen = mainNav.classList.toggle("is-open");
       navToggle.setAttribute("aria-expanded", String(isOpen));
       navToggle.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+      setTopUiHeight();
     });
     // Close menu when a link is clicked
     mainNav.querySelectorAll("a").forEach((link) => {
@@ -17,6 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
         mainNav.classList.remove("is-open");
         navToggle.setAttribute("aria-expanded", "false");
         navToggle.setAttribute("aria-label", "Open menu");
+        setTopUiHeight();
       });
     });
   }

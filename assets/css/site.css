@@ -159,6 +159,7 @@ a {
 
 .nav-toggle {
   display: none;
+  color: var(--ink);
 }
 
 .main-nav a {
@@ -234,6 +235,10 @@ a {
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.45);
 }
 
+.home-page .nav-toggle {
+  color: #ffffff;
+}
+
 .home-page .main-nav a:hover,
 .home-page .main-nav a:focus-visible {
   border-color: rgba(255, 255, 255, 0.82);
@@ -251,6 +256,10 @@ a {
 .home-page.nav-stuck .main-nav a {
   color: var(--ink);
   text-shadow: none;
+}
+
+.home-page.nav-stuck .nav-toggle {
+  color: var(--ink);
 }
 
 .home-page.nav-stuck .main-nav a:hover,
@@ -526,6 +535,10 @@ button:hover {
     min-height: 64px;
   }
 
+  .home-page .header-wrap {
+    position: relative;
+  }
+
   .nav-toggle {
     display: flex;
     flex-direction: column;
@@ -561,22 +574,51 @@ button:hover {
   }
 
   .main-nav {
-    display: none;
+    display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1.4rem;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 1rem;
     width: 100%;
-    padding: 1.5rem 0 1.2rem;
-    border-top: 1px solid var(--border);
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
+    padding: 0;
+    margin-top: 0;
+    border-top: 0;
+    background: transparent;
+    transition: max-height 0.28s ease, opacity 0.22s ease, padding 0.22s ease, margin-top 0.22s ease;
   }
 
   .main-nav.is-open {
-    display: flex;
+    max-height: 420px;
+    opacity: 1;
+    pointer-events: auto;
+    padding: 0.8rem 0 1rem;
+    margin-top: 0.4rem;
   }
 
   .main-nav a {
-    font-size: 1.1rem;
+    font-size: 1.08rem;
+    padding: 0.25rem 0;
+  }
+
+  .home-page .main-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 8;
+    width: 100%;
+    margin-top: 0;
+    border-top: 0;
+    background: transparent;
+  }
+
+  .home-page .main-nav.is-open {
+    margin-top: 0;
+    background: transparent;
   }
 
   .form-grid {
