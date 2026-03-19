@@ -41,6 +41,22 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("resize", setNavState);
   window.addEventListener("scroll", setNavState, { passive: true });
 
+  const heroVideo = document.getElementById("video-player-tag");
+  if (heroVideo) {
+    const seekToStartOffset = () => {
+      if (!Number.isFinite(heroVideo.duration) || heroVideo.duration <= 0) {
+        return;
+      }
+      heroVideo.currentTime = Math.min(2, Math.max(0, heroVideo.duration - 0.1));
+    };
+
+    if (heroVideo.readyState >= 1) {
+      seekToStartOffset();
+    } else {
+      heroVideo.addEventListener("loadedmetadata", seekToStartOffset, { once: true });
+    }
+  }
+
   const revealables = document.querySelectorAll(".animate-on-scroll");
 
   if (!revealables.length || !("IntersectionObserver" in window)) {

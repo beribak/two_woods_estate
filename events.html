@@ -8,10 +8,11 @@ permalink: /events/
 
 <section class="hero-image animate-on-scroll">
   <img src="{{ events.hero.image }}" alt="{{ events.hero.alt }}" />
+  <h1 class="hero-title">{{ page.title }}</h1>
 </section>
 
 <section class="section panel animate-on-scroll">
-  <h1>{{ events.intro.heading }}</h1>
+  <h2>{{ events.intro.heading }}</h2>
   {% for paragraph in events.intro.paragraphs %}
     <p>{{ paragraph }}</p>
   {% endfor %}
