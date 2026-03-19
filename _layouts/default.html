@@ -32,6 +32,9 @@
           <span></span>
         </button>
         <nav id="primary-nav" aria-label="Primary" class="main-nav">
+          {% unless page.url == '/' %}
+            <a href="{{ '/' | relative_url }}">Home</a>
+          {% endunless %}
           <a href="{{ '/weddings/' | relative_url }}">Weddings</a>
           <a href="{{ '/events/' | relative_url }}">Events</a>
           <a href="{{ '/gallery/' | relative_url }}">Gallery</a>

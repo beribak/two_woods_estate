@@ -19,16 +19,16 @@
 # in the templates via {{ site.myvariable }}.
 
 title: Two Woods Estate
-email: hello@twowoodsestate.com
+email: info@twowoodsestate.com
 description: >-
   Two Woods Estate is a destination wedding and events venue surrounded by
   woodland, meadows, and timeless architecture.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 
-venue_address: "Two Woods Estate, Countryside Lane, Devon, EX12 3AB"
-instagram_url: "https://www.instagram.com/"
-facebook_url: "https://www.facebook.com/"
+venue_address: "<p>Two Woods Estate, Blackgate Lane Pulborough, West Sussex, RH20 1DD"
+instagram_url: "https://www.instagram.com/twowoodsestate/"
+facebook_url: "https://www.facebook.com/2woodsestate/"
 ticker_message: "Late Availability: Select 2026 weekends now open. Private tours available this month."
 
 # Build settings
