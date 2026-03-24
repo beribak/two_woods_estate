@@ -1,6 +1,6 @@
 :root {
-  --bg: #f7f2eb;
-  --paper: #fffdfa;
+  --bg: #f4f4f1;
+  --paper: #ffffff;
   --ink: #1f1a18;
   --accent: #9c6d4f;
   --accent-soft: #d7ba9f;
@@ -24,10 +24,7 @@ body {
 body {
   font-family: "Manrope", "Segoe UI", sans-serif;
   color: var(--ink);
-  background:
-    radial-gradient(circle at 10% 10%, #f4e3d2 0%, transparent 40%),
-    radial-gradient(circle at 90% 0%, #ebdfd0 0%, transparent 35%),
-    var(--bg);
+  background: var(--bg);
   line-height: 1.65;
 }
 
@@ -176,7 +173,7 @@ a {
 
 .page-content {
   width: 100%;
-  padding: 0 0 4.5rem;
+  /* padding: 0 0 4.5rem; */
 }
 
 .hero-video,
@@ -312,6 +309,20 @@ a {
   border: 0;
   border-radius: 0;
   box-shadow: none;
+  text-align: center;
+}
+
+.panel h1,
+.panel h2 {
+  font-size: clamp(2.4rem, 5vw, 5rem);
+}
+
+.panel > p {
+  font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+  max-width: 72ch;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.75;
 }
 
 .carousel-wrap {
@@ -518,9 +529,9 @@ textarea {
 
 button {
   border: 0;
-  padding: 0.8rem 1rem;
+  padding: 0.9rem 2rem;
   border-radius: 10px;
-  background: linear-gradient(120deg, #9f704f, #c79d76);
+  background: #408a71;
   color: #fff;
   font-weight: 600;
   cursor: pointer;
@@ -528,18 +539,6 @@ button {
 
 button:hover {
   filter: brightness(1.03);
-}
-
-.site-footer {
-  padding: 1.8rem 0 2.6rem;
-  border-top: 1px solid var(--border);
-  background: color-mix(in srgb, var(--paper) 88%, #f5e8db 12%);
-}
-
-.footer-wrap {
-  display: grid;
-  gap: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
 }
 
 .animate-on-scroll {
@@ -566,10 +565,6 @@ button:hover {
     justify-content: space-between;
     padding: 0 1rem;
     min-height: 64px;
-  }
-
-  .home-page .header-wrap {
-    /* position: relative; */
   }
 
   .nav-toggle {
@@ -666,3 +661,4 @@ button:hover {
     grid-template-columns: 1fr;
   }
 }
+
