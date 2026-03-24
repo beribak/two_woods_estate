@@ -15,11 +15,22 @@
     <script defer src="{{ '/assets/js/site.js' | relative_url }}"></script>
   </head>
   <body class="{% if page.url == '/' %}home-page{% endif %}">
+    {% assign ticker_items = site.ticker_messages %}
+    {% if ticker_items == nil or ticker_items.size == 0 %}
+      {% assign ticker_items = site.ticker_message | split: '||' %}
+    {% endif %}
     <div class="ticker" role="status" aria-live="polite">
       <div class="ticker-track">
-        <span>{{ site.ticker_message }}</span>
-        <span>{{ site.ticker_message }}</span>
-        <span>{{ site.ticker_message }}</span>
+        {% for copy in (1..2) %}
+          <div class="ticker-group" aria-hidden="{% if copy == 2 %}true{% else %}false{% endif %}">
+            {% for message in ticker_items %}
+              {% assign clean_message = message | strip %}
+              {% if clean_message != '' %}
+                <span class="ticker-item">{{ clean_message }}</span>
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endfor %}
       </div>
     </div>
 

@@ -74,26 +74,36 @@ a {
   letter-spacing: 0.07em;
   overflow: hidden;
   white-space: nowrap;
+  padding: 0.5rem 0;
 }
 
 .ticker-track {
   display: inline-flex;
-  gap: 3rem;
-  padding: 0.5rem 0;
-  min-width: 200%;
-  animation: ticker-scroll 22s linear infinite;
+  width: max-content;
+  animation: ticker-flow 24s linear infinite;
+}
+
+.ticker-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.1rem;
+  padding-right: 1.1rem;
+}
+
+.ticker-item {
+  display: inline-block;
 }
 
 .ticker:hover .ticker-track {
   animation-play-state: paused;
 }
 
-@keyframes ticker-scroll {
+@keyframes ticker-flow {
   from {
-    transform: translateX(0);
+    transform: translateX(100vw);
   }
   to {
-    transform: translateX(-33.333%);
+    transform: translateX(calc(100vw - 50%));
   }
 }
 
