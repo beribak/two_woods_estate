@@ -1,0 +1,26 @@
+.site-footer {
+  padding: 3.5rem 0 4rem;
+  border-top: none;
+  background: #2c3d2e;
+  color: #e8e0d4;
+}
+
+.site-footer h2 {
+  color: #d7c9a8;
+}
+
+.site-footer a {
+  color: #c9bca0;
+  text-decoration-color: rgba(201, 188, 160, 0.4);
+}
+
+.site-footer a:hover {
+  color: #e8dfc8;
+  text-decoration-color: rgba(232, 223, 200, 0.7);
+}
+
+.footer-wrap {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+}

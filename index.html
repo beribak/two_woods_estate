@@ -7,7 +7,7 @@ permalink: /
 {% assign home = site.data.home %}
 
 <section class="hero-video landing-hero animate-on-scroll">
-	<video id="video-player-tag" class="video-player-tag" autoplay muted playsinline loop preload="metadata" src="{{ home.hero_video.source }}" controlslist="nodownload"></video>
+	<video id="video-player-tag" class="video-player-tag" autoplay muted playsinline loop preload="metadata" poster="{{ home.hero_video.poster }}" src="{{ home.hero_video.source }}" controlslist="nodownload"></video>
 </section>
 
 <section class="section panel animate-on-scroll">
@@ -29,5 +29,22 @@ permalink: /
 				</div>
 			</article>
 		{% endfor %}
+	</div>
+</section>
+
+<section class="full-width-banner animate-on-scroll">
+	<div class="banner-content">
+		<div class="banner-image">
+			<img src="{{ '/assets/images/forest_wedding.jpg' | relative_url }}" alt="Forest wedding ceremony" />
+		</div>
+		<div class="banner-text">
+			<p>With its unfathomable energy and the ethereal peace that descends from the instant you step inside, this spellbinding space will touch your soul.</p>
+			
+			<p>You won't just see the trees; you will feel them.</p>
+			
+			<p>Maybe you will pause to take a breath before starting down the aisle as dappled light spills through the trees and nature's very own orchestra accompanies your chosen wedding music. Walk a little further and you will reach your guests gathered before the ceremonial pagoda.</p>
+			
+			<p>These are once-in-a-lifetime memories that no one will forget but right now this is your moment to cherish with your family and friends, and your future is waiting (perhaps a little nervously) under the cover of the pagoda.</p>
+		</div>
 	</div>
 </section>
