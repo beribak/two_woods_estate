@@ -1,0 +1,36 @@
+.explore-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.explore-section {
+  max-width: 1320px;
+  padding-left: clamp(1rem, 2.5vw, 2rem);
+  padding-right: clamp(1rem, 2.5vw, 2rem);
+}
+
+.explore-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.explore-link .card {
+  height: 100%;
+}
+
+.explore-link .card img {
+  aspect-ratio: 16 / 9;
+  transition: transform 0.28s ease;
+}
+
+.explore-link:hover .card img,
+.explore-link:focus-visible .card img {
+  transform: scale(1.02);
+}
+
+@media (max-width: 640px) {
+  .explore-links {
+    grid-template-columns: 1fr;
+  }
+}

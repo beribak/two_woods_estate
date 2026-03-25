@@ -12,25 +12,26 @@
     <link rel="stylesheet" href="{{ '/assets/css/footer.css' | relative_url }}" />
     <link rel="stylesheet" href="{{ '/assets/css/contact.css' | relative_url }}" />
     <link rel="stylesheet" href="{{ '/assets/css/home-banner.css' | relative_url }}" />
+    {% if page.url == '/' %}
+      <link rel="stylesheet" href="{{ '/assets/css/home-explore.css' | relative_url }}" />
+    {% endif %}
     <script defer src="{{ '/assets/js/site.js' | relative_url }}"></script>
   </head>
-  <body class="{% if page.url == '/' %}home-page{% endif %}">
+  <body class="{% if page.url == '/' or page.hero_nav %}home-page{% endif %}">
     {% assign ticker_items = site.ticker_messages %}
     {% if ticker_items == nil or ticker_items.size == 0 %}
       {% assign ticker_items = site.ticker_message | split: '||' %}
     {% endif %}
     <div class="ticker" role="status" aria-live="polite">
       <div class="ticker-track">
-        {% for copy in (1..2) %}
-          <div class="ticker-group" aria-hidden="{% if copy == 2 %}true{% else %}false{% endif %}">
-            {% for message in ticker_items %}
-              {% assign clean_message = message | strip %}
-              {% if clean_message != '' %}
-                <span class="ticker-item">{{ clean_message }}</span>
-              {% endif %}
-            {% endfor %}
-          </div>
-        {% endfor %}
+        <div class="ticker-group">
+          {% for message in ticker_items %}
+            {% assign clean_message = message | strip %}
+            {% if clean_message != '' %}
+              <span class="ticker-item">{{ clean_message }}</span>
+            {% endif %}
+          {% endfor %}
+        </div>
       </div>
     </div>
 
