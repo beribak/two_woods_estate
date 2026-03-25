@@ -43,11 +43,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const heroVideo = document.getElementById("video-player-tag");
   if (heroVideo) {
+    const configuredOffset = Number.parseFloat(heroVideo.dataset.startOffset || "");
+    const startOffsetSeconds = Number.isFinite(configuredOffset) ? Math.max(0, configuredOffset) : 2;
+
     const seekToStartOffset = () => {
       if (!Number.isFinite(heroVideo.duration) || heroVideo.duration <= 0) {
         return;
       }
-      heroVideo.currentTime = Math.min(2, Math.max(0, heroVideo.duration - 0.1));
+      heroVideo.currentTime = Math.min(startOffsetSeconds, Math.max(0, heroVideo.duration - 0.1));
     };
 
     if (heroVideo.readyState >= 1) {
@@ -80,6 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Carousel arrow navigation
   document.querySelectorAll(".card-carousel").forEach((carousel) => {
+    const cards = Array.from(carousel.querySelectorAll(".card"));
     const wrap = document.createElement("div");
     wrap.className = "carousel-wrap";
     carousel.parentNode.insertBefore(wrap, carousel);
@@ -98,7 +102,56 @@ document.addEventListener("DOMContentLoaded", () => {
     wrap.appendChild(prev);
     wrap.appendChild(next);
 
-    const scrollAmount = () => carousel.clientWidth * 0.75;
+    const cardStep = () => {
+      const firstCard = cards[0];
+      if (!firstCard) {
+        return carousel.clientWidth * 0.75;
+      }
+      const cardWidth = firstCard.getBoundingClientRect().width;
+      const gap = Number.parseFloat(window.getComputedStyle(carousel).columnGap || "0") || 0;
+      return cardWidth + gap;
+    };
+
+    const updateCardFocus = () => {
+      if (!cards.length) {
+        return;
+      }
+
+      const viewportCenter = carousel.getBoundingClientRect().left + carousel.clientWidth / 2;
+      let centerIndex = 0;
+      let minDistance = Number.POSITIVE_INFINITY;
+
+      cards.forEach((card, index) => {
+        const rect = card.getBoundingClientRect();
+        const cardCenter = rect.left + rect.width / 2;
+        const distance = Math.abs(cardCenter - viewportCenter);
+        if (distance < minDistance) {
+          minDistance = distance;
+          centerIndex = index;
+        }
+      });
+
+      cards.forEach((card, index) => {
+        const isCenter = index === centerIndex;
+        const isSide = index === centerIndex - 1 || index === centerIndex + 1;
+        card.classList.toggle("is-center", isCenter);
+        card.classList.toggle("is-side", isSide);
+      });
+    };
+
+    let isTicking = false;
+
+    const onCarouselScroll = () => {
+      if (isTicking) {
+        return;
+      }
+      isTicking = true;
+      window.requestAnimationFrame(() => {
+        updateButtons();
+        updateCardFocus();
+        isTicking = false;
+      });
+    };
 
     const updateButtons = () => {
       prev.disabled = carousel.scrollLeft <= 2;
@@ -106,16 +159,29 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     prev.addEventListener("click", () => {
-      carousel.scrollBy({ left: -scrollAmount(), behavior: "smooth" });
+      carousel.scrollBy({ left: -cardStep(), behavior: "smooth" });
     });
 
     next.addEventListener("click", () => {
-      carousel.scrollBy({ left: scrollAmount(), behavior: "smooth" });
+      carousel.scrollBy({ left: cardStep(), behavior: "smooth" });
     });
 
-    carousel.addEventListener("scroll", updateButtons, { passive: true });
-    window.addEventListener("resize", updateButtons);
+    carousel.addEventListener("scroll", onCarouselScroll, { passive: true });
+    window.addEventListener("resize", () => {
+      updateButtons();
+      updateCardFocus();
+    });
+
+    if (cards.length > 1) {
+      window.requestAnimationFrame(() => {
+        carousel.scrollTo({ left: cardStep(), behavior: "auto" });
+        updateButtons();
+        updateCardFocus();
+      });
+    }
+
     updateButtons();
+    updateCardFocus();
   });
 
   // Gallery image modal

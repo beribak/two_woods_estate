@@ -2,12 +2,14 @@
 layout: default
 title: Weddings
 permalink: /weddings/
+hero_nav: true
 ---
 
 {% assign weddings = site.data.weddings %}
+{% assign home = site.data.home %}
 
-<section class="hero-image animate-on-scroll">
-  <img src="{{ weddings.hero.image }}" alt="{{ weddings.hero.alt }}" />
+<section class="hero-video landing-hero animate-on-scroll">
+  <video id="video-player-tag" class="video-player-tag" autoplay muted playsinline loop preload="metadata" poster="{{ home.hero_video.poster }}" src="{{ home.hero_video.source }}" controlslist="nodownload" data-start-offset="4"></video>
   <h1 class="hero-title">{{ page.title }}</h1>
 </section>
 

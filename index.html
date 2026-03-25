@@ -5,6 +5,8 @@ permalink: /
 ---
 
 {% assign home = site.data.home %}
+{% assign weddings = site.data.weddings %}
+{% assign events = site.data.events %}
 
 <section class="hero-video landing-hero animate-on-scroll">
 	<video id="video-player-tag" class="video-player-tag" autoplay muted playsinline loop preload="metadata" poster="{{ home.hero_video.poster }}" src="{{ home.hero_video.source }}" controlslist="nodownload"></video>
@@ -17,18 +19,27 @@ permalink: /
 	</p>
 </section>
 
-<section class="section panel animate-on-scroll">
+<section class="section panel explore-section animate-on-scroll">
 	<h2>{{ home.explore.heading }}</h2>
-	<div class="card-carousel">
-		{% for card in home.explore.cards %}
+	<div class="explore-links">
+		<a class="explore-link" href="{{ '/weddings/' | relative_url }}">
 			<article class="card">
-				<img src="{{ card.image }}" alt="{{ card.alt }}" />
+				<img src="{{ weddings.hero.image }}" alt="{{ weddings.hero.alt }}" />
 				<div class="card-body">
-					<h3>{{ card.title }}</h3>
-					<p>{{ card.description }}</p>
+					<h3>{{ weddings.intro.heading }}</h3>
+					<p>{{ weddings.intro.paragraphs | first }}</p>
 				</div>
 			</article>
-		{% endfor %}
+		</a>
+		<a class="explore-link" href="{{ '/events/' | relative_url }}">
+			<article class="card">
+				<img src="{{ events.hero.image }}" alt="{{ events.hero.alt }}" />
+				<div class="card-body">
+					<h3>{{ events.intro.heading }}</h3>
+					<p>{{ events.intro.paragraphs | first }}</p>
+				</div>
+			</article>
+		</a>
 	</div>
 </section>
 
