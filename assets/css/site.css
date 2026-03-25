@@ -441,6 +441,14 @@ a {
   display: block;
 }
 
+.card-carousel .card img {
+  aspect-ratio: 3 / 2.2;
+}
+
+.card-carousel .card:not(.is-center) {
+  cursor: pointer;
+}
+
 .card-body {
   padding: 0.85rem 0 0;
 }

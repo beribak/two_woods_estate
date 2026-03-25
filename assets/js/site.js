@@ -166,6 +166,15 @@ document.addEventListener("DOMContentLoaded", () => {
       carousel.scrollBy({ left: cardStep(), behavior: "smooth" });
     });
 
+    cards.forEach((card) => {
+      card.addEventListener("click", () => {
+        if (!card.classList.contains("is-center")) {
+          const targetScrollLeft = card.offsetLeft + card.offsetWidth / 2 - carousel.clientWidth / 2;
+          carousel.scrollTo({ left: targetScrollLeft, behavior: "smooth" });
+        }
+      });
+    });
+
     carousel.addEventListener("scroll", onCarouselScroll, { passive: true });
     window.addEventListener("resize", () => {
       updateButtons();
