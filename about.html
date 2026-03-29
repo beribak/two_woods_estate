@@ -6,14 +6,16 @@ permalink: /about/
 
 {% assign about = site.data.about %}
 
-<section class="hero-image animate-on-scroll">
-	<img src="{{ about.hero.image }}" alt="{{ about.hero.alt }}" />
-	<h1 class="hero-title">{{ page.title }}</h1>
-</section>
-
-<section class="section panel animate-on-scroll">
-	<h2>{{ about.content.heading }}</h2>
-	<p>
-		{{ about.content.body }}
-	</p>
+<section class="section about-section animate-on-scroll">
+	<div class="about-layout">
+		<div class="about-image-wrap">
+			<img src="{{ '/assets/images/about_us.jpg' | relative_url }}" alt="About Two Woods Estate" class="about-image" />
+		</div>
+		<div class="about-copy">
+			<h1>{{ about.content.heading }}</h1>
+			<p>
+				{{ about.content.body }}
+			</p>
+		</div>
+	</div>
 </section>

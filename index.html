@@ -21,25 +21,27 @@ permalink: /
 
 <section class="section panel explore-section animate-on-scroll">
 	<h2>{{ home.explore.heading }}</h2>
-	<div class="explore-links">
-		<a class="explore-link" href="{{ '/weddings/' | relative_url }}">
-			<article class="card">
-				<img src="{{ weddings.hero.image }}" alt="{{ weddings.hero.alt }}" />
-				<div class="card-body">
-					<h3>{{ weddings.intro.heading }}</h3>
-					<p>{{ weddings.intro.paragraphs | first }}</p>
-				</div>
-			</article>
-		</a>
-		<a class="explore-link" href="{{ '/events/' | relative_url }}">
-			<article class="card">
-				<img src="{{ events.hero.image }}" alt="{{ events.hero.alt }}" />
-				<div class="card-body">
-					<h3>{{ events.intro.heading }}</h3>
-					<p>{{ events.intro.paragraphs | first }}</p>
-				</div>
-			</article>
-		</a>
+	
+	<div class="explore-item explore-item--left">
+		<article class="explore-item-image">
+			<img src="{{ weddings.hero.image }}" alt="{{ weddings.hero.alt }}" />
+		</article>
+		<article class="explore-item-content">
+			<h3>{{ weddings.intro.heading }}</h3>
+			<p>{{ weddings.intro.paragraphs | first }}</p>
+			<a class="btn" href="{{ '/weddings/' | relative_url }}">Find out more</a>
+		</article>
+	</div>
+	
+	<div class="explore-item explore-item--right">
+		<article class="explore-item-content">
+			<h3>{{ events.intro.heading }}</h3>
+			<p>{{ events.intro.paragraphs | first }}</p>
+			<a class="btn" href="{{ '/events/' | relative_url }}">Find out more</a>
+		</article>
+		<article class="explore-item-image">
+			<img src="{{ events.hero.image }}" alt="{{ events.hero.alt }}" />
+		</article>
 	</div>
 </section>
 
