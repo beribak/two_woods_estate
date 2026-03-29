@@ -336,6 +336,45 @@ a {
   line-height: 1.75;
 }
 
+.about-section {
+  margin-top: 2.75rem;
+}
+
+.about-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.9fr);
+  gap: clamp(1.5rem, 3vw, 3rem);
+  align-items: center;
+}
+
+.about-image-wrap {
+  width: 100%;
+}
+
+.about-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  aspect-ratio: auto;
+  border: 1px solid #e3d7cb;
+}
+
+.about-copy {
+  text-align: left;
+}
+
+.about-copy h1 {
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  margin-bottom: 0.35em;
+}
+
+.about-copy p {
+  margin: 0;
+  font-size: clamp(1rem, 1.35vw, 1.2rem);
+  line-height: 1.75;
+}
+
 .carousel-wrap {
   position: relative;
   width: min(96vw, 1680px);
@@ -470,9 +509,31 @@ a {
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 900px) {
+  .carousel-wrap {
+    width: 100vw;
+    padding-inline: 0;
+  }
+
   .card-carousel {
-    grid-auto-columns: minmax(0, 1fr);
+    --carousel-gap: 0px;
+    --carousel-edge-spacer: 0px;
+    grid-auto-columns: 100%;
+    scroll-padding-inline: 0;
+  }
+
+  .carousel-btn {
+    top: 50%;
+    width: 40px;
+    height: 40px;
+  }
+
+  .carousel-btn--prev {
+    left: 0.35rem;
+  }
+
+  .carousel-btn--next {
+    right: 0.35rem;
   }
 }
 
@@ -721,6 +782,10 @@ button:hover {
   }
 
   .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-layout {
     grid-template-columns: 1fr;
   }
 }
