@@ -61,8 +61,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const revealables = document.querySelectorAll(".animate-on-scroll");
+  const isMobileViewport = window.matchMedia("(max-width: 760px)").matches;
 
-  if (!revealables.length || !("IntersectionObserver" in window)) {
+  if (!revealables.length || isMobileViewport || !("IntersectionObserver" in window)) {
     revealables.forEach((el) => el.classList.add("is-visible"));
     return;
   }
