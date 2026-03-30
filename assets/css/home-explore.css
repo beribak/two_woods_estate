@@ -7,6 +7,7 @@
 .explore-section {
   max-width: none;
   width: 100%;
+  margin-bottom: 0 !important;
   margin-left: 0;
   margin-right: 0;
   padding-left: 0;
@@ -16,6 +17,7 @@
 .explore-item {
   display: flex;
   align-items: stretch;
+  min-height: calc(106svh - var(--top-ui-height));
 }
 
 .explore-item--left {
@@ -52,10 +54,24 @@
 
 .explore-item-content h3 {
   margin-bottom: 1rem;
+  font-size: clamp(1.6rem, 3vw, 2.3rem);
 }
 
 .explore-item-content p {
+  font-size: clamp(1.08rem, 1.55vw, 1.3rem);
   line-height: 1.6;
+}
+
+.explore-item-content .btn {
+  display: inline-block;
+  margin-top: 0.9rem;
+  font-size: clamp(1rem, 1.25vw, 1.12rem);
+  transition: transform 0.2s ease;
+}
+
+.explore-item-content .btn:hover,
+.explore-item-content .btn:focus-visible {
+  transform: translateY(-2px) scale(1.05);
 }
 
 .explore-link {
@@ -79,6 +95,7 @@
 
 @media (max-width: 640px) {
   .explore-item {
+    min-height: auto;
     flex-direction: column !important;
   }
 

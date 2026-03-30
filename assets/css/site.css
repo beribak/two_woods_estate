@@ -311,7 +311,7 @@ a {
 .section {
   width: 100%;
   max-width: 1120px;
-  margin: 3rem auto 4.25rem;
+  margin: 4rem auto 4rem;
   padding: 0 clamp(1.5rem, 4vw, 3.5rem);
 }
 
@@ -336,15 +336,29 @@ a {
   line-height: 1.75;
 }
 
+.home-page .landing-hero + .section.panel {
+  min-height: calc(100svh - var(--top-ui-height));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .about-section {
   margin-top: 2.75rem;
+  max-width: 1240px;
+  padding-left: clamp(1rem, 2vw, 2rem);
+  padding-right: clamp(1rem, 2vw, 2rem);
+  min-height: calc(100svh - var(--top-ui-height));
+  display: flex;
+  align-items: center;
 }
 
 .about-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.9fr);
-  gap: clamp(1.5rem, 3vw, 3rem);
-  align-items: center;
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+  gap: clamp(2rem, 4vw, 4.5rem);
+  align-items: start;
+  width: 100%;
 }
 
 .about-image-wrap {
@@ -362,16 +376,17 @@ a {
 
 .about-copy {
   text-align: left;
+  max-width: 42rem;
 }
 
 .about-copy h1 {
-  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  font-size: clamp(2.5rem, 4.4vw, 4rem);
   margin-bottom: 0.35em;
 }
 
 .about-copy p {
   margin: 0;
-  font-size: clamp(1rem, 1.35vw, 1.2rem);
+  font-size: clamp(1.08rem, 1.6vw, 1.32rem);
   line-height: 1.75;
 }
 
