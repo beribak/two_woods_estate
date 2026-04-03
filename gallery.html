@@ -10,7 +10,12 @@ permalink: /gallery/
   <h1>{{ gallery.content.heading }}</h1>
   <div class="gallery-grid">
     {% for image in gallery.content.images %}
-      <img src="{{ image.image }}" alt="{{ image.alt }}" />
+      <figure class="gallery-item image-with-credit">
+        <img src="{{ image.image }}" alt="{{ image.alt }}" />
+        {% if image.photographer != "" %}
+          <figcaption class="image-credit">Photography by {{ image.photographer }}</figcaption>
+        {% endif %}
+      </figure>
     {% endfor %}
   </div>
 </section>

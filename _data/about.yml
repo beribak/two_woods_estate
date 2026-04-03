@@ -1,6 +1,7 @@
 hero:
   image: "https://www.twowoodsestate.com/images-2024-2/title-image.jpg"
   alt: "Exterior view of Two Woods Estate"
+  photographer: ""
 content:
   heading: "About Us"
   body: "We love what we do. Our passion comes from a genuine desire to enable couples to experience their dream of getting married in the heart of the beautiful outdoors."

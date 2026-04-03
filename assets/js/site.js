@@ -65,22 +65,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!revealables.length || isMobileViewport || !("IntersectionObserver" in window)) {
     revealables.forEach((el) => el.classList.add("is-visible"));
-    return;
+  } else {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.18 }
+    );
+
+    revealables.forEach((el) => observer.observe(el));
   }
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.18 }
-  );
-
-  revealables.forEach((el) => observer.observe(el));
 
   // Carousel arrow navigation
   document.querySelectorAll(".card-carousel").forEach((carousel) => {

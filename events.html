@@ -6,9 +6,12 @@ permalink: /events/
 
 {% assign events = site.data.events %}
 
-<section class="hero-image animate-on-scroll">
+<section class="hero-image animate-on-scroll image-with-credit">
   <img src="{{ events.hero.image }}" alt="{{ events.hero.alt }}" />
   <h1 class="hero-title">{{ page.title }}</h1>
+  {% if events.hero.photographer != "" %}
+    <p class="image-credit">Photography by {{ events.hero.photographer }}</p>
+  {% endif %}
 </section>
 
 <section class="section panel animate-on-scroll">
@@ -23,12 +26,33 @@ permalink: /events/
   <div class="card-carousel">
     {% for card in events.spaces.cards %}
       <article class="card">
-        <img src="{{ card.image }}" alt="{{ card.alt }}" />
+        <div class="image-with-credit">
+          <img src="{{ card.image }}" alt="{{ card.alt }}" />
+          {% if card.photographer != "" %}
+            <p class="image-credit">Photography by {{ card.photographer }}</p>
+          {% endif %}
+        </div>
         <div class="card-body">
           <h3>{{ card.title }}</h3>
           <p>{{ card.description }}</p>
         </div>
       </article>
     {% endfor %}
+  </div>
+</section>
+
+<section class="full-width-banner animate-on-scroll">
+  <div class="banner-content">
+    <div class="banner-image image-with-credit">
+      <img src="{{ events.banner.image | relative_url }}" alt="{{ events.banner.alt }}" />
+      {% if events.banner.photographer != "" %}
+        <p class="image-credit">Photography by {{ events.banner.photographer }}</p>
+      {% endif %}
+    </div>
+    <div class="banner-text">
+      {% for paragraph in events.banner.paragraphs %}
+        <p>{{ paragraph }}</p>
+      {% endfor %}
+    </div>
   </div>
 </section>

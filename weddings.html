@@ -6,10 +6,9 @@ hero_nav: true
 ---
 
 {% assign weddings = site.data.weddings %}
-{% assign home = site.data.home %}
 
 <section class="hero-video landing-hero animate-on-scroll">
-  <video id="video-player-tag" class="video-player-tag" autoplay muted playsinline loop preload="metadata" poster="{{ home.hero_video.poster }}" src="{{ home.hero_video.source }}" controlslist="nodownload" data-start-offset="4"></video>
+  <video id="video-player-tag" class="video-player-tag" autoplay muted playsinline loop preload="metadata" poster="{{ weddings.hero_video.poster }}" src="{{ weddings.hero_video.source }}" controlslist="nodownload" data-start-offset="4"></video>
   <!-- <h1 class="hero-title">{{ page.title }}</h1> -->
 </section>
 
@@ -25,12 +24,33 @@ hero_nav: true
   <div class="card-carousel">
     {% for card in weddings.spaces.cards %}
       <article class="card">
-        <img src="{{ card.image }}" alt="{{ card.alt }}" />
+        <div class="image-with-credit">
+          <img src="{{ card.image }}" alt="{{ card.alt }}" />
+          {% if card.photographer != "" %}
+            <p class="image-credit">Photography by {{ card.photographer }}</p>
+          {% endif %}
+        </div>
         <div class="card-body">
           <h3>{{ card.title }}</h3>
           <p>{{ card.description }}</p>
         </div>
       </article>
     {% endfor %}
+  </div>
+</section>
+
+<section class="full-width-banner animate-on-scroll">
+  <div class="banner-content">
+    <div class="banner-image image-with-credit">
+      <img src="{{ weddings.banner.image | relative_url }}" alt="{{ weddings.banner.alt }}" />
+      {% if weddings.banner.photographer != "" %}
+        <p class="image-credit">Photography by {{ weddings.banner.photographer }}</p>
+      {% endif %}
+    </div>
+    <div class="banner-text">
+      {% for paragraph in weddings.banner.paragraphs %}
+        <p>{{ paragraph }}</p>
+      {% endfor %}
+    </div>
   </div>
 </section>

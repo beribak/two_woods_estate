@@ -29,6 +29,7 @@
 }
 
 .explore-item-image {
+  position: relative;
   flex: 0 0 49.5vw;
   /* width: 50vw; */
   /* aspect-ratio: 16 / 9; */
@@ -40,6 +41,18 @@
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+.explore-item-image .image-credit {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+  margin: 0;
+  padding: 0.45rem 0.7rem;
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--ink);
+  box-shadow: 0 8px 18px rgba(20, 16, 12, 0.12);
 }
 
 .explore-item-content {

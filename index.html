@@ -5,11 +5,9 @@ permalink: /
 ---
 
 {% assign home = site.data.home %}
-{% assign weddings = site.data.weddings %}
-{% assign events = site.data.events %}
 
 <section class="hero-video landing-hero animate-on-scroll">
-	<video id="video-player-tag" class="video-player-tag" autoplay muted playsinline loop preload="metadata" poster="{{ home.hero_video.poster }}" src="{{ home.hero_video.source }}" controlslist="nodownload"></video>
+	<video id="video-player-tag" class="video-player-tag" autoplay muted playsinline loop preload="metadata" poster="{{ home.hero_video.poster }}" src="{{ home.hero_video.source }}" controlslist="nodownload" data-start-offset="4"></video>
 </section>
 
 <section class="section panel animate-on-scroll">
@@ -22,41 +20,46 @@ permalink: /
 <section class="section panel explore-section animate-on-scroll">
 	<!-- <h2>{{ home.explore.heading }}</h2> -->
 	<div class="explore-item explore-item--left">
-		<article class="explore-item-image">
-			<img src="{{ weddings.hero.image }}" alt="{{ weddings.hero.alt }}" />
+		<article class="explore-item-image image-with-credit">
+			<img src="{{ home.explore.left.image }}" alt="{{ home.explore.left.alt }}" />
+			{% if home.explore.left.photographer != "" %}
+				<p class="image-credit">Photography by {{ home.explore.left.photographer }}</p>
+			{% endif %}
 		</article>
 		<article class="explore-item-content">
-			<h3>{{ weddings.intro.heading }}</h3>
-			<p>{{ weddings.intro.paragraphs | first }}</p>
-			<a class="btn" href="{{ '/weddings/' | relative_url }}">Find out more</a>
+			<h3>{{ home.explore.left.heading }}</h3>
+			<p>{{ home.explore.left.body }}</p>
+			<a class="btn" href="{{ home.explore.left.link | relative_url }}">{{ home.explore.left.link_label }}</a>
 		</article>
 	</div>
 	
 	<div class="explore-item explore-item--right">
 		<article class="explore-item-content">
-			<h3>{{ events.intro.heading }}</h3>
-			<p>{{ events.intro.paragraphs | first }}</p>
-			<a class="btn" href="{{ '/events/' | relative_url }}">Find out more</a>
+			<h3>{{ home.explore.right.heading }}</h3>
+			<p>{{ home.explore.right.body }}</p>
+			<a class="btn" href="{{ home.explore.right.link | relative_url }}">{{ home.explore.right.link_label }}</a>
 		</article>
-		<article class="explore-item-image">
-			<img src="{{ events.hero.image }}" alt="{{ events.hero.alt }}" />
+		<article class="explore-item-image image-with-credit">
+			<img src="{{ home.explore.right.image }}" alt="{{ home.explore.right.alt }}" />
+			{% if home.explore.right.photographer != "" %}
+				<p class="image-credit">Photography by {{ home.explore.right.photographer }}</p>
+			{% endif %}
 		</article>
 	</div>
 </section>
 
 <section class="full-width-banner animate-on-scroll">
 	<div class="banner-content">
-		<div class="banner-image">
-			<img src="{{ '/assets/images/forest_wedding.jpg' | relative_url }}" alt="Forest wedding ceremony" />
+		<div class="banner-image image-with-credit">
+			<img src="{{ home.banner.image | relative_url }}" alt="{{ home.banner.alt }}" />
+			{% if home.banner.photographer != "" %}
+				<p class="image-credit">Photography by {{ home.banner.photographer }}</p>
+			{% endif %}
 		</div>
 		<div class="banner-text">
-			<p>With its unfathomable energy and the ethereal peace that descends from the instant you step inside, this spellbinding space will touch your soul.</p>
-			
-			<p>You won't just see the trees; you will feel them.</p>
-			
-			<p>Maybe you will pause to take a breath before starting down the aisle as dappled light spills through the trees and nature's very own orchestra accompanies your chosen wedding music. Walk a little further and you will reach your guests gathered before the ceremonial pagoda.</p>
-			
-			<p>These are once-in-a-lifetime memories that no one will forget but right now this is your moment to cherish with your family and friends, and your future is waiting (perhaps a little nervously) under the cover of the pagoda.</p>
+			{% for paragraph in home.banner.paragraphs %}
+				<p>{{ paragraph }}</p>
+			{% endfor %}
 		</div>
 	</div>
 </section>

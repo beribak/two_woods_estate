@@ -17,13 +17,14 @@
     {% endif %}
     <script defer src="{{ '/assets/js/site.js' | relative_url }}"></script>
   </head>
+
   <body class="{% if page.url == '/' or page.hero_nav %}home-page{% endif %}">
     {% assign ticker_items = site.ticker_messages %}
     {% if ticker_items == nil or ticker_items.size == 0 %}
       {% assign ticker_items = site.ticker_message | split: '||' %}
     {% endif %}
     <div class="ticker" role="status" aria-live="polite">
-      <div class="ticker-track">
+    <div class="ticker-track">
         <div class="ticker-group">
           {% for message in ticker_items %}
             {% assign clean_message = message | strip %}

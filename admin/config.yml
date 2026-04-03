@@ -51,26 +51,57 @@ collections:
             widget: object
             fields:
               - { label: Heading, name: heading, widget: string }
-              - label: Cards
-                name: cards
-                widget: list
-                summary: "{{fields.title}}"
+              - label: Left Feature
+                name: left
+                widget: object
                 fields:
-                  - { label: Title, name: title, widget: string }
-                  - { label: Description, name: description, widget: text }
+                  - { label: Heading, name: heading, widget: string }
+                  - { label: Body, name: body, widget: text }
                   - { label: Image, name: image, widget: image }
                   - { label: Alt Text, name: alt, widget: string }
+                  - { label: Photographer Credit, name: photographer, widget: string, required: false }
+                  - { label: Link, name: link, widget: string }
+                  - { label: Link Label, name: link_label, widget: string }
+              - label: Right Feature
+                name: right
+                widget: object
+                fields:
+                  - { label: Heading, name: heading, widget: string }
+                  - { label: Body, name: body, widget: text }
+                  - { label: Image, name: image, widget: image }
+                  - { label: Alt Text, name: alt, widget: string }
+                  - { label: Photographer Credit, name: photographer, widget: string, required: false }
+                  - { label: Link, name: link, widget: string }
+                  - { label: Link Label, name: link_label, widget: string }
+          - label: Banner Section
+            name: banner
+            widget: object
+            fields:
+              - { label: Image, name: image, widget: image }
+              - { label: Alt Text, name: alt, widget: string }
+              - { label: Photographer Credit, name: photographer, widget: string, required: false }
+              - label: Paragraphs
+                name: paragraphs
+                widget: list
+                field: { label: Paragraph, name: paragraph, widget: text }
 
       - label: Weddings Page
         name: weddings_page
         file: _data/weddings.yml
         fields:
+          - label: Hero Video
+            name: hero_video
+            widget: object
+            fields:
+              - { label: Video Poster, name: poster, widget: image, required: false }
+              - { label: Video Source URL, name: source, widget: string }
           - label: Hero
             name: hero
             widget: object
             fields:
               - { label: Hero Image, name: image, widget: image }
               - { label: Hero Alt Text, name: alt, widget: string }
+              - { label: Photographer Credit, name: photographer, widget: string, required: false }
           - label: Intro
             name: intro
             widget: object
@@ -94,6 +125,18 @@ collections:
                   - { label: Description, name: description, widget: text }
                   - { label: Image, name: image, widget: image }
                   - { label: Alt Text, name: alt, widget: string }
+                  - { label: Photographer Credit, name: photographer, widget: string, required: false }
+          - label: Banner Section
+            name: banner
+            widget: object
+            fields:
+              - { label: Image, name: image, widget: image }
+              - { label: Alt Text, name: alt, widget: string }
+              - { label: Photographer Credit, name: photographer, widget: string, required: false }
+              - label: Paragraphs
+                name: paragraphs
+                widget: list
+                field: { label: Paragraph, name: paragraph, widget: text }
 
       - label: Events Page
         name: events_page
@@ -105,6 +148,7 @@ collections:
             fields:
               - { label: Hero Image, name: image, widget: image }
               - { label: Hero Alt Text, name: alt, widget: string }
+              - { label: Photographer Credit, name: photographer, widget: string, required: false }
           - label: Intro
             name: intro
             widget: object
@@ -128,6 +172,18 @@ collections:
                   - { label: Description, name: description, widget: text }
                   - { label: Image, name: image, widget: image }
                   - { label: Alt Text, name: alt, widget: string }
+                  - { label: Photographer Credit, name: photographer, widget: string, required: false }
+          - label: Banner Section
+            name: banner
+            widget: object
+            fields:
+              - { label: Image, name: image, widget: image }
+              - { label: Alt Text, name: alt, widget: string }
+              - { label: Photographer Credit, name: photographer, widget: string, required: false }
+              - label: Paragraphs
+                name: paragraphs
+                widget: list
+                field: { label: Paragraph, name: paragraph, widget: text }
 
       - label: Gallery Page
         name: gallery_page
@@ -145,6 +201,7 @@ collections:
                 fields:
                   - { label: Image, name: image, widget: image }
                   - { label: Alt Text, name: alt, widget: string }
+                  - { label: Photographer Credit, name: photographer, widget: string, required: false }
 
       - label: About Page
         name: about_page
@@ -156,6 +213,7 @@ collections:
             fields:
               - { label: Hero Image, name: image, widget: image }
               - { label: Hero Alt Text, name: alt, widget: string }
+              - { label: Photographer Credit, name: photographer, widget: string, required: false }
           - label: Content
             name: content
             widget: object
