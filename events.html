@@ -7,7 +7,7 @@ permalink: /events/
 {% assign events = site.data.events %}
 
 <section class="hero-image animate-on-scroll image-with-credit">
-  <img src="{{ events.hero.image }}" alt="{{ events.hero.alt }}" />
+  <img src="{{ events.hero.image | relative_url }}" alt="{{ events.hero.alt }}" />
   <h1 class="hero-title">{{ page.title }}</h1>
   {% if events.hero.photographer != "" %}
     <p class="image-credit">Photography by {{ events.hero.photographer }}</p>
@@ -27,7 +27,7 @@ permalink: /events/
     {% for card in events.spaces.cards %}
       <article class="card">
         <div class="image-with-credit">
-          <img src="{{ card.image }}" alt="{{ card.alt }}" />
+          <img src="{{ card.image | relative_url }}" alt="{{ card.alt }}" />
           {% if card.photographer != "" %}
             <p class="image-credit">Photography by {{ card.photographer }}</p>
           {% endif %}

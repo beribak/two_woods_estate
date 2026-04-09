@@ -6,12 +6,12 @@ permalink: /gallery/
 
 {% assign gallery = site.data.gallery %}
 
-<section class="section panel animate-on-scroll">
+<section class="section panel">
   <h1>{{ gallery.content.heading }}</h1>
   <div class="gallery-grid">
     {% for image in gallery.content.images %}
       <figure class="gallery-item image-with-credit">
-        <img src="{{ image.image }}" alt="{{ image.alt }}" />
+        <img src="{{ image.image | relative_url }}" alt="{{ image.alt }}" />
         {% if image.photographer != "" %}
           <figcaption class="image-credit">Photography by {{ image.photographer }}</figcaption>
         {% endif %}
