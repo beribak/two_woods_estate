@@ -47,19 +47,3 @@ permalink: /
 		</article>
 	</div>
 </section>
-
-<section class="full-width-banner animate-on-scroll">
-	<div class="banner-content">
-		<div class="banner-image image-with-credit">
-			<img src="{{ home.banner.image | relative_url }}" alt="{{ home.banner.alt }}" />
-			{% if home.banner.photographer != "" %}
-				<p class="image-credit">Photography by {{ home.banner.photographer }}</p>
-			{% endif %}
-		</div>
-		<div class="banner-text">
-			{% for paragraph in home.banner.paragraphs %}
-				<p>{{ paragraph }}</p>
-			{% endfor %}
-		</div>
-	</div>
-</section>
