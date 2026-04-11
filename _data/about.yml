@@ -4,4 +4,7 @@ hero:
   photographer: ""
 content:
   heading: "About Us"
-  body: "We love what we do. Our passion comes from a genuine desire to enable couples to experience their dream of getting married in the heart of the beautiful outdoors."
+  paragraphs:
+    - "Rob & Woody have been friends since meeting at school more than 30 years ago."
+    - "Our Two Woods Estate journey began at Rob's own wedding, which took place in the woods in Hampshire back in 2019 - Woody was Best Man. It's fair to say that most of our great ideas have been conceived after a drink or two, and nearly all of them have failed to ever see the light of day (if they had, we'd have rowed the Atlantic and run a couple of marathons by now)."
+    - "However, the idea of a wedding and events venue based in the woods and surrounded by nature stuck - and here we are today."

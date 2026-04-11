@@ -5,9 +5,8 @@ hero:
 intro:
   heading: "Events at Two Woods Estate"
   paragraphs:
-    - "Beyond weddings, Two Woods Estate is built for milestone birthdays, brand retreats, private dinners, and seasonal celebrations."
-    - "Our team can shape each event around your timeline, guest journey, and preferred atmosphere, from relaxed daytime gatherings to polished evening experiences."
-    - "The spaces below follow the same visual format as the Weddings page and can be adapted with final event-specific content."
+    - "Two Woods Estate is a unique events venue designed to inspire creativity, collaboration, and memorable shared experiences."
+    - "Set within private woodland and open countryside, our venue offers a versatile collection of indoor and outdoor spaces ideally suited for everything from strategy days and client entertaining to large-scale team building events and parties."
 spaces:
   heading: "Event Spaces"
   cards:
@@ -15,11 +14,6 @@ spaces:
       description: "A striking outdoor setting for welcome drinks and intimate ceremonies."
       image: "/assets/images/events_carousel/Redwoods.jpg"
       alt: "Redwoods event space"
-      photographer: ""
-    - title: "Loft"
-      description: "Flexible indoor layout suitable for talks, dining, and networking."
-      image: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=1200&q=80"
-      alt: "Loft for presentations and dinners"
       photographer: ""
     - title: "Meadow"
       description: "Open-air freedom for informal programs, team moments, and music."

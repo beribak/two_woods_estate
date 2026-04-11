@@ -13,9 +13,9 @@ permalink: /about/
 		</div>
 		<div class="about-copy">
 			<h1>{{ about.content.heading }}</h1>
-			<p>
-				{{ about.content.body }}
-			</p>
+			{% for paragraph in about.content.paragraphs %}
+				<p>{{ paragraph }}</p>
+			{% endfor %}
 		</div>
 	</div>
 </section>

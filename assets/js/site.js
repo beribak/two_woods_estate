@@ -200,18 +200,79 @@ document.addEventListener("DOMContentLoaded", () => {
     modal.className = "gallery-modal";
     modal.setAttribute("aria-hidden", "true");
 
+    let currentImageIndex = 0;
+    let touchStartX = 0;
+    let touchStartY = 0;
+
     const closeBtn = document.createElement("button");
     closeBtn.className = "gallery-modal-close";
     closeBtn.setAttribute("aria-label", "Close image");
     closeBtn.type = "button";
     closeBtn.innerHTML = "&times;";
 
+    const prevBtn = document.createElement("button");
+    prevBtn.className = "gallery-modal-nav gallery-modal-nav-prev";
+    prevBtn.setAttribute("aria-label", "Previous image");
+    prevBtn.type = "button";
+    prevBtn.innerHTML = "&#8249;";
+
+    const nextBtn = document.createElement("button");
+    nextBtn.className = "gallery-modal-nav gallery-modal-nav-next";
+    nextBtn.setAttribute("aria-label", "Next image");
+    nextBtn.type = "button";
+    nextBtn.innerHTML = "&#8250;";
+
     const modalImage = document.createElement("img");
     modalImage.className = "gallery-modal-image";
     modalImage.alt = "";
 
+    const updateModalImage = (index) => {
+      const image = galleryImages[index];
+      if (!image) {
+        return;
+      }
+
+      currentImageIndex = index;
+      modalImage.src = image.src;
+      modalImage.alt = image.alt || "Gallery image";
+    };
+
+    const showPreviousImage = () => {
+      const previousIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+      updateModalImage(previousIndex);
+    };
+
+    const showNextImage = () => {
+      const nextIndex = (currentImageIndex + 1) % galleryImages.length;
+      updateModalImage(nextIndex);
+    };
+
+    const handleTouchStart = (event) => {
+      const touch = event.changedTouches[0];
+      touchStartX = touch.clientX;
+      touchStartY = touch.clientY;
+    };
+
+    const handleTouchEnd = (event) => {
+      const touch = event.changedTouches[0];
+      const deltaX = touch.clientX - touchStartX;
+      const deltaY = touch.clientY - touchStartY;
+
+      if (Math.abs(deltaX) < 40 || Math.abs(deltaX) < Math.abs(deltaY)) {
+        return;
+      }
+
+      if (deltaX > 0) {
+        showPreviousImage();
+      } else {
+        showNextImage();
+      }
+    };
+
     modal.appendChild(closeBtn);
+    modal.appendChild(prevBtn);
     modal.appendChild(modalImage);
+    modal.appendChild(nextBtn);
     document.body.appendChild(modal);
 
     const closeModal = () => {
@@ -220,28 +281,45 @@ document.addEventListener("DOMContentLoaded", () => {
       document.body.classList.remove("modal-open");
     };
 
-    const openModal = (image) => {
-      modalImage.src = image.src;
-      modalImage.alt = image.alt || "Gallery image";
+    const openModal = (index) => {
+      updateModalImage(index);
       modal.classList.add("is-open");
       modal.setAttribute("aria-hidden", "false");
       document.body.classList.add("modal-open");
     };
 
-    galleryImages.forEach((image) => {
-      image.addEventListener("click", () => openModal(image));
+    galleryImages.forEach((image, index) => {
+      image.addEventListener("click", () => openModal(index));
     });
 
     closeBtn.addEventListener("click", closeModal);
+    prevBtn.addEventListener("click", (event) => {
+      event.stopPropagation();
+      showPreviousImage();
+    });
+    nextBtn.addEventListener("click", (event) => {
+      event.stopPropagation();
+      showNextImage();
+    });
     modal.addEventListener("click", (event) => {
       if (event.target === modal) {
         closeModal();
       }
     });
+    modalImage.addEventListener("touchstart", handleTouchStart, { passive: true });
+    modalImage.addEventListener("touchend", handleTouchEnd, { passive: true });
 
     document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && modal.classList.contains("is-open")) {
+      if (!modal.classList.contains("is-open")) {
+        return;
+      }
+
+      if (event.key === "Escape") {
         closeModal();
+      } else if (event.key === "ArrowLeft") {
+        showPreviousImage();
+      } else if (event.key === "ArrowRight") {
+        showNextImage();
       }
     });
   }
