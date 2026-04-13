@@ -203,6 +203,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentImageIndex = 0;
     let touchStartX = 0;
     let touchStartY = 0;
+    let isTrackingSwipe = false;
 
     const closeBtn = document.createElement("button");
     closeBtn.className = "gallery-modal-close";
@@ -249,14 +250,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const handleTouchStart = (event) => {
       const touch = event.changedTouches[0];
+      if (!touch) {
+        return;
+      }
+
       touchStartX = touch.clientX;
       touchStartY = touch.clientY;
+      isTrackingSwipe = true;
     };
 
     const handleTouchEnd = (event) => {
+      if (!isTrackingSwipe) {
+        return;
+      }
+
       const touch = event.changedTouches[0];
+      if (!touch) {
+        return;
+      }
+
       const deltaX = touch.clientX - touchStartX;
       const deltaY = touch.clientY - touchStartY;
+      isTrackingSwipe = false;
 
       if (Math.abs(deltaX) < 40 || Math.abs(deltaX) < Math.abs(deltaY)) {
         return;
@@ -267,6 +282,10 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         showNextImage();
       }
+    };
+
+    const resetSwipeTracking = () => {
+      isTrackingSwipe = false;
     };
 
     modal.appendChild(closeBtn);
@@ -306,8 +325,9 @@ document.addEventListener("DOMContentLoaded", () => {
         closeModal();
       }
     });
-    modalImage.addEventListener("touchstart", handleTouchStart, { passive: true });
-    modalImage.addEventListener("touchend", handleTouchEnd, { passive: true });
+    modal.addEventListener("touchstart", handleTouchStart, { passive: true });
+    modal.addEventListener("touchend", handleTouchEnd, { passive: true });
+    modal.addEventListener("touchcancel", resetSwipeTracking, { passive: true });
 
     document.addEventListener("keydown", (event) => {
       if (!modal.classList.contains("is-open")) {
