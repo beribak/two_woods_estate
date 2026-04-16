@@ -9,6 +9,9 @@
   --ticker-height: 38px;
   --header-height: 72px;
   --top-ui-height: 110px;
+  --font-ui: "Manrope", "Segoe UI", sans-serif;
+  --font-heading: "Cormorant Garamond", Georgia, serif;
+  --font-copy: "Source Serif 4", Georgia, serif;
 }
 
 * {
@@ -22,7 +25,7 @@ body {
 }
 
 body {
-  font-family: "Manrope", "Segoe UI", sans-serif;
+  font-family: var(--font-ui);
   color: var(--ink);
   background: var(--bg);
   line-height: 1.65;
@@ -32,9 +35,17 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: "Cormorant Garamond", Georgia, serif;
+  font-family: var(--font-heading);
   line-height: 1.12;
   margin: 0 0 0.4em;
+}
+
+p {
+  font-family: var(--font-copy);
+  font-weight: 400;
+  letter-spacing: 0;
+  font-size: 0.98rem;
+  line-height: 1.68;
 }
 
 h1 {
@@ -141,7 +152,7 @@ a {
 }
 
 .brand {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--font-heading);
   text-decoration: none;
   font-size: clamp(1.5rem, 2.2vw, 2.1rem);
   letter-spacing: 0.04em;
@@ -295,11 +306,16 @@ a {
 }
 
 .panel > p {
-  font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+  font-size: clamp(0.98rem, 1.45vw, 1.16rem);
   max-width: 72ch;
   margin-left: auto;
   margin-right: auto;
   line-height: 1.75;
+}
+
+.landing-hero + .section.panel > p,
+.hero-image + .section.panel > p {
+  font-size: clamp(1.06rem, 1.68vw, 1.26rem);
 }
 
 .home-page .landing-hero + .section.panel {
@@ -352,8 +368,8 @@ a {
 
 .about-copy p {
   margin: 0;
-  font-size: clamp(1.08rem, 1.6vw, 1.32rem);
-  line-height: 1.75;
+  font-size: clamp(1rem, 1.3vw, 1.16rem);
+  line-height: 1.72;
 }
 
 .carousel-wrap {
