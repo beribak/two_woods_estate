@@ -44,51 +44,16 @@ permalink: /contact/
     {{ contact.content.intro }}
   </p>
 
-  <form class="form-grid" action="#" method="post">
-    <div>
-      <label for="name">Full Name</label>
-      <input id="name" name="name" type="text" required />
-    </div>
-
-    <div>
-      <label for="email">Email Address</label>
-      <input id="email" name="email" type="email" required />
-    </div>
-
-    <div>
-      <label for="phone">Phone Number</label>
-      <input id="phone" name="phone" type="tel" />
-    </div>
-
-    <div>
-      <label for="event-type">Event Type</label>
-      <select id="event-type" name="event-type">
-        <option>Wedding</option>
-        <option>Private Event</option>
-        <option>Corporate Event</option>
-        <option>Other</option>
-      </select>
-    </div>
-
-    <div>
-      <label for="event-date">Preferred Date</label>
-      <input id="event-date" name="event-date" type="date" />
-    </div>
-
-    <div>
-      <label for="guest-count">Estimated Guests</label>
-      <input id="guest-count" name="guest-count" type="number" min="1" />
-    </div>
-
-    <div class="full">
-      <label for="message">Tell Us About Your Plans</label>
-      <textarea id="message" name="message" placeholder="Share your ideas, timeline, and any details you want us to know."></textarea>
-    </div>
-
-    <div class="full">
-      <button type="submit">Send Enquiry</button>
-    </div>
-  </form>
+  <div class="contact-form-embed">
+    <div
+      class="sonas-form"
+      data-form-id="3PMeB6NnyCtScqP6S"
+      data-tenant-id="dQgE84pvmtBL9dNgK"
+    ></div>
+    <noscript>
+      <p>Please enable JavaScript to use the enquiry form, or email us at <a href="mailto:{{ site.email }}">{{ site.email }}</a>.</p>
+    </noscript>
+  </div>
 </section>
 
 <section class="section contact-map-section animate-on-scroll">
@@ -114,6 +79,14 @@ permalink: /contact/
     });
   }
 </script>
+
+<script
+  src="https://app.sonas.events/formswidget.min.js"
+  type="text/javascript"
+  defer
+  async
+></script>
+
 <script
   async
   defer
