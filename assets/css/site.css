@@ -555,11 +555,26 @@ a {
 
 .gallery-item {
   margin: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.gallery-item .image-credit {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+  margin: 0;
+  padding: 0.35rem 0.55rem;
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--ink);
+  box-shadow: 0 8px 18px rgba(20, 16, 12, 0.12);
 }
 
 .gallery-grid img {
   width: 100%;
   height: clamp(280px, 30vw, 420px);
+  display: block;
   border-radius: 0;
   object-fit: cover;
   border: 1px solid #e3d7cb;
@@ -590,6 +605,20 @@ a {
   border-radius: 0;
   border: 1px solid color-mix(in srgb, var(--paper) 35%, transparent);
   box-shadow: 0 22px 50px rgba(0, 0, 0, 0.42);
+}
+
+.gallery-modal-credit {
+  position: absolute;
+  left: 50%;
+  bottom: 1.25rem;
+  transform: translateX(-50%);
+  z-index: 1;
+  margin: 0;
+  padding: 0.35rem 0.55rem;
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--ink);
+  box-shadow: 0 8px 18px rgba(20, 16, 12, 0.12);
+  white-space: nowrap;
 }
 
 .gallery-modal-nav,

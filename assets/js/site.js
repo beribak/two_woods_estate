@@ -227,6 +227,10 @@ document.addEventListener("DOMContentLoaded", () => {
     modalImage.className = "gallery-modal-image";
     modalImage.alt = "";
 
+    const modalCredit = document.createElement("p");
+    modalCredit.className = "image-credit gallery-modal-credit";
+    modalCredit.hidden = true;
+
     const updateModalImage = (index) => {
       const image = galleryImages[index];
       if (!image) {
@@ -236,6 +240,15 @@ document.addEventListener("DOMContentLoaded", () => {
       currentImageIndex = index;
       modalImage.src = image.src;
       modalImage.alt = image.alt || "Gallery image";
+
+      const photographer = image.dataset.photographer?.trim();
+      if (photographer) {
+        modalCredit.textContent = `Photography by ${photographer}`;
+        modalCredit.hidden = false;
+      } else {
+        modalCredit.textContent = "";
+        modalCredit.hidden = true;
+      }
     };
 
     const showPreviousImage = () => {
@@ -291,6 +304,7 @@ document.addEventListener("DOMContentLoaded", () => {
     modal.appendChild(closeBtn);
     modal.appendChild(prevBtn);
     modal.appendChild(modalImage);
+    modal.appendChild(modalCredit);
     modal.appendChild(nextBtn);
     document.body.appendChild(modal);
 
