@@ -53,7 +53,9 @@
     <header class="site-header">
       <div class="wrap header-wrap">
         <div class="brand-group">
-          <img class="logo" src="{{ '/assets/images/two_woods_estate.svg' | relative_url }}" alt="Two Woods Estate" />
+          <a class="logo-link" href="{{ '/' | relative_url }}" aria-label="Two Woods Estate home">
+            <img class="logo" src="{{ '/assets/images/two_woods_estate.svg' | relative_url }}" alt="Two Woods Estate" />
+          </a>
           <a class="brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
         </div>
         <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
