@@ -1,6 +1,6 @@
 hero:
-  image: "https://www.twowoodsestate.com/images-2024-2/gallery2/fulls/04.jpg"
-  alt: "Styled event setup at the estate"
+  image: "/assets/images/event_space.jpg"
+  alt: "Event dining space set up inside Two Woods Estate"
   photographer: ""
 intro:
   heading: "Events at Two Woods Estate"
