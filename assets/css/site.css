@@ -92,6 +92,8 @@ a {
   display: inline-flex;
   width: max-content;
   animation: ticker-flow 33.1s linear infinite;
+  backface-visibility: hidden;
+  will-change: transform;
 }
 
 .ticker-group {
@@ -111,10 +113,10 @@ a {
 
 @keyframes ticker-flow {
   from {
-    transform: translateX(100vw);
+    transform: translate3d(100vw, 0, 0);
   }
   to {
-    transform: translateX(-100%);
+    transform: translate3d(-100%, 0, 0);
   }
 }
 

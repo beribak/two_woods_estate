@@ -44,20 +44,34 @@ document.addEventListener("DOMContentLoaded", () => {
   const heroVideo = document.getElementById("video-player-tag");
   if (heroVideo) {
     const configuredOffset = Number.parseFloat(heroVideo.dataset.startOffset || "");
-    const startOffsetSeconds = Number.isFinite(configuredOffset) ? Math.max(0, configuredOffset) : 2;
+    const startOffsetSeconds = Number.isFinite(configuredOffset) ? Math.max(0, configuredOffset) : 0;
 
-    const seekToStartOffset = () => {
-      if (!Number.isFinite(heroVideo.duration) || heroVideo.duration <= 0) {
+    const playHeroVideo = () => {
+      const playPromise = heroVideo.play();
+      if (playPromise && typeof playPromise.catch === "function") {
+        playPromise.catch(() => {});
+      }
+    };
+
+    const applyStartOffset = () => {
+      if (startOffsetSeconds <= 0 || !Number.isFinite(heroVideo.duration) || heroVideo.duration <= 0) {
+        return;
+      }
+      if (heroVideo.currentTime >= startOffsetSeconds - 0.25) {
         return;
       }
       heroVideo.currentTime = Math.min(startOffsetSeconds, Math.max(0, heroVideo.duration - 0.1));
     };
 
+    heroVideo.preload = "auto";
+
     if (heroVideo.readyState >= 1) {
-      seekToStartOffset();
+      applyStartOffset();
     } else {
-      heroVideo.addEventListener("loadedmetadata", seekToStartOffset, { once: true });
+      heroVideo.addEventListener("loadedmetadata", applyStartOffset, { once: true });
     }
+    heroVideo.addEventListener("pause", playHeroVideo);
+    playHeroVideo();
   }
 
   const revealables = document.querySelectorAll(".animate-on-scroll");
@@ -84,6 +98,35 @@ document.addEventListener("DOMContentLoaded", () => {
   // Carousel arrow navigation
   document.querySelectorAll(".card-carousel").forEach((carousel) => {
     const cards = Array.from(carousel.querySelectorAll(".card"));
+    const isLooping = cards.length > 1;
+
+    if (isLooping) {
+      const cloneCard = (card) => {
+        const clone = card.cloneNode(true);
+        clone.setAttribute("aria-hidden", "true");
+        clone.dataset.carouselClone = "true";
+        clone.querySelectorAll("img").forEach((image) => {
+          image.loading = "lazy";
+          image.decoding = "async";
+          image.fetchPriority = "low";
+        });
+        return clone;
+      };
+
+      const leadingClones = document.createDocumentFragment();
+      const trailingClones = document.createDocumentFragment();
+
+      cards.forEach((card) => {
+        leadingClones.appendChild(cloneCard(card));
+        trailingClones.appendChild(cloneCard(card));
+      });
+
+      carousel.insertBefore(leadingClones, cards[0]);
+      carousel.appendChild(trailingClones);
+    }
+
+    const carouselCards = Array.from(carousel.querySelectorAll(".card"));
+    const firstRealCardIndex = isLooping ? cards.length : 0;
     const wrap = document.createElement("div");
     wrap.className = "carousel-wrap";
     carousel.parentNode.insertBefore(wrap, carousel);
@@ -112,16 +155,12 @@ document.addEventListener("DOMContentLoaded", () => {
       return cardWidth + gap;
     };
 
-    const updateCardFocus = () => {
-      if (!cards.length) {
-        return;
-      }
-
+    const nearestCardIndex = () => {
       const viewportCenter = carousel.getBoundingClientRect().left + carousel.clientWidth / 2;
       let centerIndex = 0;
       let minDistance = Number.POSITIVE_INFINITY;
 
-      cards.forEach((card, index) => {
+      carouselCards.forEach((card, index) => {
         const rect = card.getBoundingClientRect();
         const cardCenter = rect.left + rect.width / 2;
         const distance = Math.abs(cardCenter - viewportCenter);
@@ -131,7 +170,48 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
 
-      cards.forEach((card, index) => {
+      return centerIndex;
+    };
+
+    const scrollToCard = (card, behavior = "smooth") => {
+      if (!card) {
+        return;
+      }
+
+      const targetScrollLeft = card.offsetLeft + card.offsetWidth / 2 - carousel.clientWidth / 2;
+      carousel.scrollTo({ left: targetScrollLeft, behavior });
+    };
+
+    const normalizeLoopPosition = () => {
+      if (!isLooping) {
+        return false;
+      }
+
+      const centerIndex = nearestCardIndex();
+      let normalizedIndex = centerIndex;
+
+      if (centerIndex < cards.length) {
+        normalizedIndex = centerIndex + cards.length;
+      } else if (centerIndex >= cards.length * 2) {
+        normalizedIndex = centerIndex - cards.length;
+      }
+
+      if (normalizedIndex === centerIndex) {
+        return false;
+      }
+
+      scrollToCard(carouselCards[normalizedIndex], "auto");
+      return true;
+    };
+
+    const updateCardFocus = () => {
+      if (!carouselCards.length) {
+        return;
+      }
+
+      const centerIndex = nearestCardIndex();
+
+      carouselCards.forEach((card, index) => {
         const isCenter = index === centerIndex;
         const isSide = index === centerIndex - 1 || index === centerIndex + 1;
         card.classList.toggle("is-center", isCenter);
@@ -140,9 +220,33 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     let isTicking = false;
+    let scrollSettleTimer = null;
+
+    const settleCarousel = () => {
+      if (scrollSettleTimer) {
+        window.clearTimeout(scrollSettleTimer);
+        scrollSettleTimer = null;
+      }
+      normalizeLoopPosition();
+      updateButtons();
+      updateCardFocus();
+    };
+
+    const scheduleCarouselSettle = () => {
+      if (!isLooping) {
+        return;
+      }
+
+      if (scrollSettleTimer) {
+        window.clearTimeout(scrollSettleTimer);
+      }
+
+      scrollSettleTimer = window.setTimeout(settleCarousel, 140);
+    };
 
     const onCarouselScroll = () => {
       if (isTicking) {
+        scheduleCarouselSettle();
         return;
       }
       isTicking = true;
@@ -151,11 +255,12 @@ document.addEventListener("DOMContentLoaded", () => {
         updateCardFocus();
         isTicking = false;
       });
+      scheduleCarouselSettle();
     };
 
     const updateButtons = () => {
-      prev.disabled = carousel.scrollLeft <= 2;
-      next.disabled = carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 2;
+      prev.disabled = !isLooping;
+      next.disabled = !isLooping;
     };
 
     prev.addEventListener("click", () => {
@@ -166,24 +271,23 @@ document.addEventListener("DOMContentLoaded", () => {
       carousel.scrollBy({ left: cardStep(), behavior: "smooth" });
     });
 
-    cards.forEach((card) => {
+    carouselCards.forEach((card) => {
       card.addEventListener("click", () => {
         if (!card.classList.contains("is-center")) {
-          const targetScrollLeft = card.offsetLeft + card.offsetWidth / 2 - carousel.clientWidth / 2;
-          carousel.scrollTo({ left: targetScrollLeft, behavior: "smooth" });
+          scrollToCard(card);
         }
       });
     });
 
     carousel.addEventListener("scroll", onCarouselScroll, { passive: true });
+    carousel.addEventListener("scrollend", settleCarousel);
     window.addEventListener("resize", () => {
-      updateButtons();
-      updateCardFocus();
+      settleCarousel();
     });
 
     if (cards.length > 1) {
       window.requestAnimationFrame(() => {
-        carousel.scrollTo({ left: cardStep(), behavior: "auto" });
+        scrollToCard(carouselCards[firstRealCardIndex], "auto");
         updateButtons();
         updateCardFocus();
       });

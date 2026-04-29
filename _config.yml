@@ -29,7 +29,7 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 venue_address: "<p>Two Woods Estate, Blackgate Lane Pulborough, West Sussex, RH20 1DD"
 instagram_url: "https://www.instagram.com/twowoodsestate/"
 facebook_url: "https://www.facebook.com/2woodsestate/"
-google_analytics_measurement_id: "" # Set this to your GA4 Measurement ID, e.g. G-XXXXXXXXXX
+google_analytics_measurement_id: "G-81EQHLJ8GK" # Set this to your GA4 Measurement ID, e.g. G-XXXXXXXXXX
 ticker_messages:
   - "Late Availability: Select 2026 weekends now open. Private tours available this month."
   - "Book a private estate tour and walk through ceremony, dining, and reception spaces."

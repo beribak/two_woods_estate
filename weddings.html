@@ -7,8 +7,8 @@ hero_nav: true
 
 {% assign weddings = site.data.weddings %}
 
-<section class="hero-video landing-hero animate-on-scroll">
-  <video id="video-player-tag" class="video-player-tag" autoplay muted playsinline loop preload="metadata" poster="{{ weddings.hero_video.poster | relative_url }}" src="{{ weddings.hero_video.source | relative_url }}" controlslist="nodownload" data-start-offset="4"></video>
+<section class="hero-video landing-hero">
+  <video id="video-player-tag" class="video-player-tag" autoplay muted playsinline loop preload="auto" poster="{{ weddings.hero_video.poster | relative_url }}" src="{{ weddings.hero_video.source | relative_url }}" controlslist="nodownload" data-start-offset="4"></video>
   <!-- <h1 class="hero-title">{{ page.title }}</h1> -->
 </section>
 
