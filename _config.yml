@@ -26,7 +26,7 @@ description: >-
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 
-venue_address: "<p>Two Woods Estate, Blackgate Lane Pulborough, West Sussex, RH20 1DD"
+venue_address: "Two Woods Estate, Black Gate Ln, Pulborough RH20 1DD, United Kingdom"
 instagram_url: "https://www.instagram.com/twowoodsestate/"
 facebook_url: "https://www.facebook.com/2woodsestate/"
 google_analytics_measurement_id: "G-81EQHLJ8GK" # Set this to your GA4 Measurement ID, e.g. G-XXXXXXXXXX

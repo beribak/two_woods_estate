@@ -48,7 +48,7 @@ permalink: /contact/
   </div>
 </section>
 
-<section class="section mt-0 panel contact-form-section animate-on-scroll">
+<section class="section mt-0 panel contact-form-section">
   <h2>{{ contact.content.heading }}</h2>
   <p>
     {{ contact.content.intro }}
@@ -65,22 +65,43 @@ permalink: /contact/
     </noscript>
   </div>
 </section>
-
 <script>
   function initMap() {
-    // Coordinates for Two Woods Estate, Blackgate Lane, Pulborough, West Sussex, RH20 1DD
-    // Update lat/lng if the pin needs adjusting
-    var venueLocation = { lat: 50.9697, lng: -0.5065 };
+    var venueAddress = {{ site.venue_address | strip_html | strip_newlines | jsonify }};
+    var fallbackLocation = { lat: 50.9854, lng: -0.4975 };
     var map = new google.maps.Map(document.getElementById("contact-map"), {
       zoom: 14,
-      center: venueLocation,
-      mapTypeId: "satellite",
+      center: fallbackLocation,
+      mapTypeId: "roadmap",
       mapTypeControl: false,
     });
-    new google.maps.Marker({
-      position: venueLocation,
+    var marker = new google.maps.Marker({
+      position: fallbackLocation,
       map: map,
-      title: "Two Woods Estate",
+      title: venueAddress,
+    });
+
+    if (!venueAddress) {
+      return;
+    }
+
+    var geocoder = new google.maps.Geocoder();
+
+    geocoder.geocode({
+      address: venueAddress,
+      region: "GB",
+      componentRestrictions: { country: "GB" }
+    }, function (results, status) {
+      if (status === "OK" && results[0]) {
+        map.setCenter(results[0].geometry.location);
+        if (results[0].geometry.viewport) {
+          map.fitBounds(results[0].geometry.viewport);
+          map.setZoom(Math.min(map.getZoom(), 16));
+        }
+        marker.setPosition(results[0].geometry.location);
+      } else {
+        console.warn("Map geocoding failed for venue address:", status);
+      }
     });
   }
 </script>
