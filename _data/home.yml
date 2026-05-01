@@ -1,6 +1,6 @@
 hero_video:
-  poster: "https://cdn-cf-east.streamable.com/image/ju806j.jpg?Expires=1775217420&Signature=KwDeUSxLSEaRxsbqe1kMpK4VlNkjc~Q~VxiAG3tErte3WTqvdLKSZ3c0goompU7XWOqeNIhscgJW8P3krqdPS8bFC3FsCrcSAXD1Mir-uMsckVENXrUK2njEWIV6DHEYI9g74nNIC65vdSfPx~ip9RbNufxY5AFRllC-2bgvVY8xTJgzCjGDjto1tmyFAsXcjvFCcVjch4EuVzzWVy7Fr8B2cqA2cQ8YzfwBDhZytJmDhEbfsNWZ-c8J3aiXQk3Qff4xuGeTn7~CxF7Xs55UffD4z4qrEa3jlDK81PD7tjTFrcgF2fXehxbMcBMV1OJOd3cRy6EzDu7THYMT6NfEaA__&Key-Pair-Id=APKAIEYUVEN4EVB2OKEQ"
-  source: "/assets/videos/two-woods.mp4"
+  poster: "/assets/images/video-poster.jpg"
+  source: "/assets/videos/two-woods-hero.mp4"
 intro:
   heading: "Welcome to Two Woods Estate"
   body: "Nestled in the heart of West Sussex, <strong>Two Woods Estate</strong> offers an extraordinary setting for events surrounded by nature and refined elegance. Towering trees, open skies, and beautifully designed outdoor spaces create an atmosphere that feels both intimate and unforgettable. Here, luxury meets the wild beauty of the woodland, allowing your celebration to unfold naturally in one of the most enchanting landscapes."

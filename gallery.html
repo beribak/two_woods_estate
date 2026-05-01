@@ -11,10 +11,22 @@ permalink: /gallery/
   <div class="gallery-grid">
     {% for image in gallery.content.images %}
       {% assign photographer = image.photographer | default: "" | strip %}
+      {% assign image_number = forloop.index | prepend: "00" | slice: -2, 2 %}
+      {% assign image_base = "/assets/images/gallery/optimized/gallery-" | append: image_number %}
       <figure class="gallery-item image-with-credit">
         <img
-          src="{{ image.image | relative_url }}"
+          src="{{ image_base | append: "-800.webp" | relative_url }}"
+          srcset="
+            {{ image_base | append: "-480.webp" | relative_url }} 480w,
+            {{ image_base | append: "-800.webp" | relative_url }} 800w,
+            {{ image_base | append: "-1200.webp" | relative_url }} 1200w
+          "
+          sizes="(max-width: 640px) 100vw, (max-width: 980px) 50vw, 33vw"
+          data-full-src="{{ image_base | append: "-1800.webp" | relative_url }}"
           alt="{{ image.alt }}"
+          decoding="async"
+          loading="eager"
+          {% if forloop.index <= 6 %}fetchpriority="high"{% endif %}
           {% if photographer != "" %}data-photographer="{{ photographer | escape }}"{% endif %}
         />
         {% if photographer != "" %}

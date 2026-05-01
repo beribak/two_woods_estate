@@ -342,7 +342,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       currentImageIndex = index;
-      modalImage.src = image.src;
+      modalImage.src = image.dataset.fullSrc || image.currentSrc || image.src;
       modalImage.alt = image.alt || "Gallery image";
 
       const photographer = image.dataset.photographer?.trim();
@@ -425,7 +425,18 @@ document.addEventListener("DOMContentLoaded", () => {
       document.body.classList.add("modal-open");
     };
 
+    const preloadFullImage = (image) => {
+      const fullSource = image?.dataset.fullSrc;
+      if (!fullSource) {
+        return;
+      }
+      const preloadImage = new Image();
+      preloadImage.src = fullSource;
+    };
+
     galleryImages.forEach((image, index) => {
+      image.addEventListener("pointerenter", () => preloadFullImage(image), { once: true });
+      image.addEventListener("touchstart", () => preloadFullImage(image), { once: true, passive: true });
       image.addEventListener("click", () => openModal(index));
     });
 
