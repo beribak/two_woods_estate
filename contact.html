@@ -6,10 +6,28 @@ permalink: /contact/
 
 {% assign contact = site.data.contact %}
 
+<section class="section panel contact-form-section animate-on-scroll">
+  <h1>{{ contact.content.heading }}</h1>
+  <p>
+    {{ contact.content.intro }}
+  </p>
+
+  <div class="contact-form-embed">
+    <div
+      class="sonas-form"
+      data-form-id="3PMeB6NnyCtScqP6S"
+      data-tenant-id="dQgE84pvmtBL9dNgK"
+    ></div>
+    <noscript>
+      <p>Please enable JavaScript to use the enquiry form, or email us at <a href="mailto:{{ site.email }}">{{ site.email }}</a>.</p>
+    </noscript>
+  </div>
+</section>
+
 <section class="section contact-info-section animate-on-scroll">
   <div class="contact-intro-grid">
     <div class="contact-intro-content">
-      <h1>Get In Touch</h1>
+      <h2>Get In Touch</h2>
       <div class="contact-cards">
 
         <!-- <a class="contact-card" href="tel:+441234567890">
@@ -45,24 +63,6 @@ permalink: /contact/
       </div>
       <div id="contact-map"></div>
     </div>
-  </div>
-</section>
-
-<section class="section mt-0 panel contact-form-section">
-  <h2>{{ contact.content.heading }}</h2>
-  <p>
-    {{ contact.content.intro }}
-  </p>
-
-  <div class="contact-form-embed">
-    <div
-      class="sonas-form"
-      data-form-id="3PMeB6NnyCtScqP6S"
-      data-tenant-id="dQgE84pvmtBL9dNgK"
-    ></div>
-    <noscript>
-      <p>Please enable JavaScript to use the enquiry form, or email us at <a href="mailto:{{ site.email }}">{{ site.email }}</a>.</p>
-    </noscript>
   </div>
 </section>
 <script>

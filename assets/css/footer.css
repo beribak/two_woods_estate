@@ -19,6 +19,46 @@
   text-decoration-color: rgba(232, 223, 200, 0.7);
 }
 
+.social-links {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.social-link {
+  display: inline-flex;
+  width: 2.4rem;
+  height: 2.4rem;
+  align-items: center;
+  justify-content: center;
+  color: #d7c9a8;
+}
+
+.social-link svg {
+  width: 1.6rem;
+  height: 1.6rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.65;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.social-link:hover,
+.social-link:focus-visible {
+  color: #e8dfc8;
+}
+
+.social-link:focus-visible {
+  outline: 1px solid currentColor;
+  outline-offset: 0.2rem;
+}
+
+.social-link[href*="facebook"] svg {
+  fill: currentColor;
+  stroke: none;
+}
+
 .footer-wrap {
   display: grid;
   gap: 2rem;

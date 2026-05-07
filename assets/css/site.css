@@ -288,10 +288,6 @@ a {
   margin-bottom: 0;
 }
 
-.page-content > .hero-image:first-child + .section {
-  margin-top: 4rem;
-}
-
 .section {
   width: 100%;
   max-width: 1120px;
@@ -320,16 +316,26 @@ a {
   line-height: 1.75;
 }
 
+.landing-hero + .section.panel,
+.page-content > .hero-image:first-child + .section.panel {
+  max-width: 980px;
+  margin-top: clamp(3.5rem, 8vh, 5rem);
+  margin-bottom: clamp(2.25rem, 6vh, 3.5rem);
+}
+
+.landing-hero + .section.panel h1,
+.landing-hero + .section.panel h2,
+.page-content > .hero-image:first-child + .section.panel h2 {
+  font-size: clamp(2rem, 4vw, 3.75rem);
+}
+
 .landing-hero + .section.panel > p,
 .hero-image + .section.panel > p {
   font-size: clamp(1.06rem, 1.68vw, 1.26rem);
 }
 
 .home-page .landing-hero + .section.panel {
-  min-height: calc(100svh - var(--top-ui-height));
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  min-height: auto;
 }
 
 .about-section {
@@ -366,7 +372,7 @@ a {
 }
 
 .about-copy {
-  text-align: left;
+  text-align: center;
   max-width: 42rem;
 }
 
@@ -376,9 +382,13 @@ a {
 }
 
 .about-copy p {
-  margin: 0;
+  margin: 0 auto;
   font-size: clamp(1rem, 1.3vw, 1.16rem);
   line-height: 1.72;
+}
+
+.about-copy p + p {
+  margin-top: 1rem;
 }
 
 .carousel-wrap {
