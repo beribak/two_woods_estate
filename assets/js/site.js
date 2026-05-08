@@ -74,27 +74,6 @@ document.addEventListener("DOMContentLoaded", () => {
     playHeroVideo();
   }
 
-  const revealables = document.querySelectorAll(".animate-on-scroll");
-  const isMobileViewport = window.matchMedia("(max-width: 760px)").matches;
-
-  if (!revealables.length || isMobileViewport || !("IntersectionObserver" in window)) {
-    revealables.forEach((el) => el.classList.add("is-visible"));
-  } else {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.18 }
-    );
-
-    revealables.forEach((el) => observer.observe(el));
-  }
-
   // Carousel arrow navigation
   document.querySelectorAll(".card-carousel").forEach((carousel) => {
     const cards = Array.from(carousel.querySelectorAll(".card"));
@@ -182,6 +161,21 @@ document.addEventListener("DOMContentLoaded", () => {
       carousel.scrollTo({ left: targetScrollLeft, behavior });
     };
 
+    const updateCardFocus = (forcedCenterIndex = nearestCardIndex()) => {
+      if (!carouselCards.length) {
+        return;
+      }
+
+      carouselCards.forEach((card, index) => {
+        const isCenter = index === forcedCenterIndex;
+        const isSide = index === forcedCenterIndex - 1 || index === forcedCenterIndex + 1;
+        card.classList.toggle("is-center", isCenter);
+        card.classList.toggle("is-side", isSide);
+      });
+    };
+
+    let isResettingLoop = false;
+
     const normalizeLoopPosition = () => {
       if (!isLooping) {
         return false;
@@ -200,23 +194,24 @@ document.addEventListener("DOMContentLoaded", () => {
         return false;
       }
 
-      scrollToCard(carouselCards[normalizedIndex], "auto");
-      return true;
-    };
-
-    const updateCardFocus = () => {
-      if (!carouselCards.length) {
-        return;
+      const normalizedCard = carouselCards[normalizedIndex];
+      if (!normalizedCard) {
+        return false;
       }
 
-      const centerIndex = nearestCardIndex();
+      const targetScrollLeft = normalizedCard.offsetLeft + normalizedCard.offsetWidth / 2 - carousel.clientWidth / 2;
+      isResettingLoop = true;
+      carousel.classList.add("is-loop-reset");
+      updateCardFocus(normalizedIndex);
+      carousel.scrollLeft = targetScrollLeft;
 
-      carouselCards.forEach((card, index) => {
-        const isCenter = index === centerIndex;
-        const isSide = index === centerIndex - 1 || index === centerIndex + 1;
-        card.classList.toggle("is-center", isCenter);
-        card.classList.toggle("is-side", isSide);
+      window.requestAnimationFrame(() => {
+        carousel.classList.remove("is-loop-reset");
+        isResettingLoop = false;
+        updateCardFocus();
       });
+
+      return true;
     };
 
     let isTicking = false;
@@ -245,6 +240,10 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const onCarouselScroll = () => {
+      if (isResettingLoop) {
+        return;
+      }
+
       if (isTicking) {
         scheduleCarouselSettle();
         return;

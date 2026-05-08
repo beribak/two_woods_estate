@@ -6,27 +6,41 @@ permalink: /events/
 
 {% assign events = site.data.events %}
 
-<section class="hero-image animate-on-scroll image-with-credit">
+<section class="hero-image image-with-credit">
   <img src="{{ events.hero.image | relative_url }}" alt="{{ events.hero.alt }}" />
   {% if events.hero.photographer != "" %}
     <p class="image-credit">Photography by {{ events.hero.photographer }}</p>
   {% endif %}
 </section>
 
-<section class="section panel animate-on-scroll">
+<section class="section panel">
   <h2>{{ events.intro.heading }}</h2>
   {% for paragraph in events.intro.paragraphs %}
     <p>{{ paragraph }}</p>
   {% endfor %}
 </section>
 
-<section class="section panel animate-on-scroll">
+<section class="section panel">
   <h2>{{ events.spaces.heading }}</h2>
   <div class="card-carousel">
     {% for card in events.spaces.cards %}
+      {% assign card_image_slug = card.title | slugify %}
+      {% assign card_image_base = "/assets/images/events_carousel/optimized/" | append: card_image_slug %}
       <article class="card">
         <div class="image-with-credit">
-          <img src="{{ card.image | relative_url }}" alt="{{ card.alt }}" />
+          <img
+            src="{{ card_image_base | append: "-800.webp" | relative_url }}"
+            srcset="
+              {{ card_image_base | append: "-480.webp" | relative_url }} 480w,
+              {{ card_image_base | append: "-800.webp" | relative_url }} 800w,
+              {{ card_image_base | append: "-1200.webp" | relative_url }} 1200w
+            "
+            sizes="(max-width: 680px) 100vw, (max-width: 980px) 50vw, 33vw"
+            alt="{{ card.alt }}"
+            loading="lazy"
+            decoding="async"
+            fetchpriority="low"
+          />
           {% if card.photographer != "" %}
             <p class="image-credit">Photography by {{ card.photographer }}</p>
           {% endif %}
@@ -40,7 +54,7 @@ permalink: /events/
   </div>
 </section>
 
-<!-- <section class="full-width-banner animate-on-scroll">
+<!-- <section class="full-width-banner">
   <div class="banner-content">
     <div class="banner-image image-with-credit">
       <img src="{{ events.banner.image | relative_url }}" alt="{{ events.banner.alt }}" />

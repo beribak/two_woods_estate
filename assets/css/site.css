@@ -325,7 +325,9 @@ a {
 
 .landing-hero + .section.panel h1,
 .landing-hero + .section.panel h2,
-.page-content > .hero-image:first-child + .section.panel h2 {
+.landing-hero + .section.panel + .section.panel h2,
+.page-content > .hero-image:first-child + .section.panel h2,
+.page-content > .hero-image:first-child + .section.panel + .section.panel h2 {
   font-size: clamp(2rem, 4vw, 3.75rem);
 }
 
@@ -415,6 +417,14 @@ a {
 
 .card-carousel::-webkit-scrollbar {
   display: none;
+}
+
+.card-carousel.is-loop-reset {
+  scroll-snap-type: none;
+}
+
+.card-carousel.is-loop-reset .card {
+  transition: none;
 }
 
 .card-carousel::before,
@@ -774,17 +784,6 @@ button {
 
 button:hover {
   filter: brightness(1.03);
-}
-
-.animate-on-scroll {
-  opacity: 0;
-  transform: translateY(26px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-}
-
-.animate-on-scroll.is-visible {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 @media (max-width: 760px) {
