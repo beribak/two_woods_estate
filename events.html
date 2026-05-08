@@ -13,14 +13,14 @@ permalink: /events/
   {% endif %}
 </section>
 
-<section class="section panel">
+<section class="section panel feature-panel">
   <h2>{{ events.intro.heading }}</h2>
   {% for paragraph in events.intro.paragraphs %}
     <p>{{ paragraph }}</p>
   {% endfor %}
 </section>
 
-<section class="section panel">
+<section class="section panel feature-panel">
   <h2>{{ events.spaces.heading }}</h2>
   <div class="card-carousel">
     {% for card in events.spaces.cards %}

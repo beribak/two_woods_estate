@@ -12,14 +12,14 @@ hero_nav: true
   <!-- <h1 class="hero-title">{{ page.title }}</h1> -->
 </section>
 
-<section class="section panel">
+<section class="section panel feature-panel">
   <h2>{{ weddings.intro.heading }}</h2>
   {% for paragraph in weddings.intro.paragraphs %}
     <p>{{ paragraph }}</p>
   {% endfor %}
 </section>
 
-<section class="section panel">
+<section class="section panel feature-panel">
   <h2>{{ weddings.spaces.heading }}</h2>
   <div class="card-carousel">
     {% for card in weddings.spaces.cards %}

@@ -331,6 +331,10 @@ a {
   font-size: clamp(2rem, 4vw, 3.75rem);
 }
 
+.feature-panel h2 {
+  font-size: clamp(2rem, 4vw, 3.75rem);
+}
+
 .landing-hero + .section.panel > p,
 .hero-image + .section.panel > p {
   font-size: clamp(1.06rem, 1.68vw, 1.26rem);
