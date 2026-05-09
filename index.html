@@ -20,7 +20,18 @@ permalink: /
 	<!-- <h2>{{ home.explore.heading }}</h2> -->
 	<div class="explore-item explore-item--left">
 		<article class="explore-item-image image-with-credit">
-			<img src="{{ home.explore.left.image }}" alt="{{ home.explore.left.alt }}" />
+			<img
+				src="{{ '/assets/images/home_explore/optimized/weddings-800.webp' | relative_url }}"
+				srcset="
+					{{ '/assets/images/home_explore/optimized/weddings-480.webp' | relative_url }} 480w,
+					{{ '/assets/images/home_explore/optimized/weddings-800.webp' | relative_url }} 800w,
+					{{ '/assets/images/home_explore/optimized/weddings-1200.webp' | relative_url }} 1200w
+				"
+				sizes="(max-width: 640px) 100vw, 50vw"
+				alt="{{ home.explore.left.alt }}"
+				loading="lazy"
+				decoding="async"
+			/>
 			{% if home.explore.left.photographer != "" %}
 				<p class="image-credit">Photography by {{ home.explore.left.photographer }}</p>
 			{% endif %}
@@ -39,7 +50,18 @@ permalink: /
 			<a class="btn" href="{{ home.explore.right.link | relative_url }}">{{ home.explore.right.link_label }}</a>
 		</article>
 		<article class="explore-item-image image-with-credit">
-			<img src="{{ home.explore.right.image }}" alt="{{ home.explore.right.alt }}" />
+			<img
+				src="{{ '/assets/images/home_explore/optimized/events-800.webp' | relative_url }}"
+				srcset="
+					{{ '/assets/images/home_explore/optimized/events-480.webp' | relative_url }} 480w,
+					{{ '/assets/images/home_explore/optimized/events-800.webp' | relative_url }} 800w,
+					{{ '/assets/images/home_explore/optimized/events-1200.webp' | relative_url }} 1200w
+				"
+				sizes="(max-width: 640px) 100vw, 50vw"
+				alt="{{ home.explore.right.alt }}"
+				loading="lazy"
+				decoding="async"
+			/>
 			{% if home.explore.right.photographer != "" %}
 				<p class="image-credit">Photography by {{ home.explore.right.photographer }}</p>
 			{% endif %}
