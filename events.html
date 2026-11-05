@@ -6,11 +6,8 @@ permalink: /events/
 
 {% assign events = site.data.events %}
 
-<section class="hero-image image-with-credit">
-  <img src="{{ events.hero.image | relative_url }}" alt="{{ events.hero.alt }}" />
-  {% if events.hero.photographer != "" %}
-    <p class="image-credit">Photography by {{ events.hero.photographer }}</p>
-  {% endif %}
+<section class="hero-video landing-hero">
+  <video id="video-player-tag" class="video-player-tag" autoplay muted playsinline loop preload="auto" poster="{{ site.data.home.hero_video.poster | relative_url }}" src="{{ site.data.home.hero_video.source | relative_url }}" controlslist="nodownload" aria-label="Two Woods Estate venue film"></video>
 </section>
 
 <section class="section panel feature-panel">
