@@ -254,9 +254,9 @@ a {
   object-fit: cover;
 }
 
-/* Keep the film's bottom logo visible when the full-screen hero crops vertically. */
+/* Bias the crop toward the bottom while leaving a little room below the logo. */
 .venue-film-hero video {
-  object-position: center bottom;
+  object-position: center 85%;
 }
 
 .hero-image img {
