@@ -254,6 +254,11 @@ a {
   object-fit: cover;
 }
 
+/* Keep the film's bottom logo visible when the full-screen hero crops vertically. */
+.venue-film-hero video {
+  object-position: center bottom;
+}
+
 .hero-image img {
   height: calc(100svh - var(--ticker-height));
   min-height: 320px;
